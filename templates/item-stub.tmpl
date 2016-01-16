@@ -1,0 +1,60 @@
+<% @loop item %>
+
+  <% @if icon %>
+    <img src='http://wiki.project1999.com/images/Item_<% @var icon %>.png' style='float:right;padding:10px;'>
+  <% @endif %>
+
+  <% @var name %><br>
+  <% @var tooltip %><br>
+  <% @var loretip %><br>
+  Slot: <% @var slottip %>
+
+  <% @if delaytip %>
+    <% @var delaytip %><br>
+  <% @endif %>
+
+  <% @if dpstip %>
+    <% @var dpstip %><br>
+  <% @endif %>
+
+  <% @if hastetip %>
+    <% @var hastetip %><br>
+  <% @endif %>
+
+  <% @if regentip %>
+    <% @var regentip %><br>
+  <% @endif %>
+
+  <% @if statstip %>
+    <% @var statstip %><br>
+  <% @endif %>
+
+  <% @if resiststip %>
+    <% @var resiststip %><br>
+  <% @endif %>
+
+  <% @if proctip %>
+    <% @var proctip %><br>
+  <% @endif %>
+
+  <% @if clicktip %>
+    <% @var clicktip %><br>
+  <% @endif %>
+
+  <% @if weighttip %>
+    WT: <% @var weighttip %>
+  <% @endif %>
+
+  <% @if sizetip %>
+    Size: <% @var sizetip %><br>
+  <% @endif %>
+
+  <% @if classtip %>
+    Class: <% @var classtip %><br>
+  <% @endif %>
+
+  <% @if racetip %>
+    Race: <% @var racetip %><br>
+  <% @endif %>
+
+<% @endloop %>

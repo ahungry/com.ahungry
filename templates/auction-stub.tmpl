@@ -1,0 +1,8 @@
+<% @loop auctions %>
+  <div class='auc'>
+    [<b class='aud'><% @var time-ago %></b>]
+    <b class='slr'>
+      <% @var seller %>
+    </b> auctions, '<b class='aul'><% @var listing %>.</b>'
+  </div>
+<% @endloop %>

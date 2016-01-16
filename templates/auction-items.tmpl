@@ -1,0 +1,7 @@
+function populate_item_search() {
+document.getElementById('item-search').innerHTML += "" +
+<% @loop items %>
+'<option value="<% @var name %>"><% @var name %></option>'+
+<% @endloop %>
+"";
+}
