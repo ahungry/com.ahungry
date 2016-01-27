@@ -179,8 +179,9 @@ a frequent rate (similar to how the site is used)."
     (ψ (remove-duplicates
         (if regex
             ;; Try to use the index, use the cache if not
-            (or (query-auctions-with-index regex :type type)
-                (query-auctions-with-cache :regex regex :type type))
+            (append
+             (query-auctions-with-cache :regex regex :type type)
+             (query-auctions-with-index regex :type type))
             ;; Unless we had no regex, then default to the cache
             (query-auctions-with-cache :limit limit
                                        :type type
