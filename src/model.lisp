@@ -98,13 +98,19 @@
 (defparameter *index-update-list* (list)
   "Keep track of auctions that need their indexes updated")
 
+(defun take-ids (ids &key (count 5))
+  "Given a string of ids: `1,2,3,4,5', return just a segment of them
+in descending order, in a list."
+  (let ((id-list (sort (mapcar #'parse-integer (split-sequence #\, ids)) #'>)))
+    (subseq id-list 0 (min count (length id-list)))))
+
 (defun query-auctions-with-index (name &key type)
   "Query via strict item names using our index lookup.  This ends up being
 faster than the cache option when querying many different name types at
 a frequent rate (similar to how the site is used)."
   (with-connection (db)
     (let ((ids (retrieve-one (select :ids (from :eq_item_index)
-                                     (where (:like :name (format nil "%~a%" name)))))))
+                                     (where (:= :name name))))))
       (when (stringp (getf ids :ids))
         ;; For now, lets not do this until we see whats killing the server
         ;;(unless (member name *index-update-list* :test #'equal)
@@ -115,12 +121,12 @@ a frequent rate (similar to how the site is used)."
             (retrieve-all
              (select :* (from :|eqAuction|)
                      (where
-                      (:and (:in :id (split-sequence #\, (getf ids :ids)))
+                      (:and (:in :id (take-ids (getf ids :ids)))
                             (:like :listing (build-like-clause type name))))
                      (order-by (:desc :date))))
             (retrieve-all
              (select :* (from :|eqAuction|)
-                     (where (:in :id (split-sequence #\, (getf ids :ids))))
+                     (where (:in :id (take-ids (getf ids :ids))))
                      (order-by (:desc :date)))))))))
 
 (defun yyyy-mm-dd (ut)
@@ -129,7 +135,7 @@ a frequent rate (similar to how the site is used)."
       (universal-to-timestamp ut)
     (format nil "~a-~2,'0d-~2,'0d" y m d)))
 
-(defun query-auctions (&key (limit 100) (type nil) (regex nil) (max-days 7))
+(defun query-auctions (&key (limit 100) (type nil) (regex nil) (max-days 2))
   "Pull out the listings, limit is the total to show"
   (with-connection (db)
     (let ((clause (build-like-clause type regex)))
@@ -204,7 +210,7 @@ a frequent rate (similar to how the site is used)."
                    (:like :name "Spell:%")))
        (order-by :name)))))
 
-(defun get-auction-listing-ids (name &key (max-days 7))
+(defun get-auction-listing-ids (name &key (max-days 2))
   "For a given item name, pull out the auction listing ids"
   (let* ((matches (query-auctions :regex name :max-days max-days))
          (ids (mapcar (lambda (match) (getf match :id)) matches)))
@@ -221,7 +227,7 @@ a frequent rate (similar to how the site is used)."
 (defun populate-eq-item-index (name)
   "In our database, populate item names/indexes for all available p99 items"
   (let* ((item-name name)
-         (item-ids (get-auction-listing-ids item-name :max-days 9000)))
+         (item-ids (get-auction-listing-ids item-name :max-days 3600)))
     (if (eq-item-index-exists-p item-name)
         (with-connection (db)
           (execute
