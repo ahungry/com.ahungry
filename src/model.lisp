@@ -104,7 +104,7 @@ faster than the cache option when querying many different name types at
 a frequent rate (similar to how the site is used)."
   (with-connection (db)
     (let ((ids (retrieve-one (select :ids (from :eq_item_index)
-                                     (where (:= :name name))))))
+                                     (where (:like :name (format nil "%~a%" name)))))))
       (when (stringp (getf ids :ids))
         ;; For now, lets not do this until we see whats killing the server
         ;;(unless (member name *index-update-list* :test #'equal)
@@ -123,15 +123,13 @@ a frequent rate (similar to how the site is used)."
                      (where (:in :id (split-sequence #\, (getf ids :ids))))
                      (order-by (:desc :date)))))))))
 
-(defparameter *max-days-old* 7)
-
 (defun yyyy-mm-dd (ut)
   "Change a universal-time into the mysql format"
   (with-decoded-timestamp (:year y :month m :day d)
       (universal-to-timestamp ut)
     (format nil "~a-~2,'0d-~2,'0d" y m d)))
 
-(defun query-auctions (&key (limit 100) (type nil) (regex nil))
+(defun query-auctions (&key (limit 100) (type nil) (regex nil) (max-days 7))
   "Pull out the listings, limit is the total to show"
   (with-connection (db)
     (let ((clause (build-like-clause type regex)))
@@ -141,7 +139,7 @@ a frequent rate (similar to how the site is used)."
              (from :|eqAuction|)
              (where
               (:and (:like :listing clause)
-                    (:> :date (yyyy-mm-dd (- (get-universal-time) (* 60 60 24 *max-days-old*))))))
+                    (:> :date (yyyy-mm-dd (- (get-universal-time) (* 60 60 24 max-days))))))
              (order-by (:desc :date))
              (limit limit)))
           (retrieve-all
@@ -205,9 +203,9 @@ a frequent rate (similar to how the site is used)."
                    (:like :name "Spell:%")))
        (order-by :name)))))
 
-(defun get-auction-listing-ids (name)
+(defun get-auction-listing-ids (name &key (max-days 7))
   "For a given item name, pull out the auction listing ids"
-  (let* ((matches (query-auctions :regex name))
+  (let* ((matches (query-auctions :regex name :max-days max-days))
          (ids (mapcar (lambda (match) (getf match :id)) matches)))
     ids))
 
@@ -222,7 +220,7 @@ a frequent rate (similar to how the site is used)."
 (defun populate-eq-item-index (name)
   "In our database, populate item names/indexes for all available p99 items"
   (let* ((item-name name)
-         (item-ids (get-auction-listing-ids item-name)))
+         (item-ids (get-auction-listing-ids item-name :max-days 9000)))
     (if (eq-item-index-exists-p item-name)
         (with-connection (db)
           (execute
