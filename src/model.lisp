@@ -123,7 +123,7 @@ a frequent rate (similar to how the site is used)."
                      (where (:in :id (split-sequence #\, (getf ids :ids))))
                      (order-by (:desc :date)))))))))
 
-(defparameter *max-days-old* 3600)
+(defparameter *max-days-old* 7)
 
 (defun yyyy-mm-dd (ut)
   "Change a universal-time into the mysql format"
