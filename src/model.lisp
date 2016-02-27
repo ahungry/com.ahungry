@@ -238,8 +238,6 @@ a frequent rate (similar to how the site is used)."
 the time."
   (remove-if (lambda (m)
                (let ((seconds-ago (- (get-universal-time) (getf m :date))))
-                 (print seconds-ago)
-                 (print seconds)
                  (> seconds-ago seconds))) matches))
 
 (defun get-price-average (name &key (max-days 7))
