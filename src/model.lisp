@@ -128,7 +128,6 @@ a frequent rate (similar to how the site is used)."
         ;;(unless (member name *index-update-list* :test #'equal)
         ;;(push name *index-update-list*))
         ;;(print (getf ids :ids))
-        (print name)
         (if type
             (retrieve-all
              (select :* (from :|eqAuction|)
