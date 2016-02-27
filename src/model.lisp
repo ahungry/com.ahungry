@@ -169,14 +169,16 @@ a frequent rate (similar to how the site is used)."
   "Pull a single item out of the database"
   (with-connection (db)
     (retrieve-one
-     (select (:name :itemclass :weight :norent :nodrop :size :slots :price :icon
+     (select (:|eqItems|.name :itemclass :weight :norent :nodrop :size :slots :price :icon
                     :cr :dr :pr :mr :fr :astr :asta :aagi :adex :acha :aint :awis :hp
                     :mana :endur :ac :classes :races :deity :bardtype :bardvalue :magic
                     :lore :delay :range :damage :bagtype :bagslots :bagsize :attack :regen
                     :haste :clickeffect :clicktype :clicklevel2 :clicklevel :maxcharges :casttime
-                    :proceffect :proctype :proclevel2 :proclevel)
+                    :proceffect :proctype :proclevel2 :proclevel
+                    :price_week :price_month :price_all)
        (from :|eqItems|)
-       (where (:and (:like :name (format nil "%~a%" name))
+       (left-join :eq_item_index :on (:= :|eqItems|.name :eq_item_index.name))
+       (where (:and (:like :|eqItems|.name (format nil "%~a%" name))
                     (:= :p99 1)))
        (limit 1)))))
 
@@ -274,9 +276,9 @@ the time."
              (set= :name item-name
                    :ids (format nil "~{~a~^,~}" item-ids))))))
     (print item-name)
-    (let ((price-week (get-price-average name :max-days 7))
-          (price-month (get-price-average name :max-days 30))
-          (price-all (get-price-average name :max-days 3600)))
+    (let* ((price-all (or (get-price-average name :max-days 3600) 0))
+           (price-month (or (get-price-average name :max-days 30) price-all))
+           (price-week (or (get-price-average name :max-days 3600) price-month)))
       (with-connection (db)
         (execute
          (update :eq_item_index
@@ -358,7 +360,10 @@ the time."
         (size "")
         (class "")
         (race "")
-        (slot ""))
+        (slot "")
+        (pweektip "")
+        (pmonthtip "")
+        (palltip ""))
 
     ;; Clean up the item to make sure nils are 0s for comparison
     (setf item (loop for slot in item collect (if (equal nil slot) 0 slot)))
@@ -422,6 +427,11 @@ the time."
            (match-string (mapcar #'string-upcase matches)))
       (c. slot (format nil "~{~a~^ ~}" match-string)))
 
+    ;; Set the price tooltips
+    (when (> (getf item :price-week) 0) (c. pweektip (format nil "~,2f" (getf item :price-week))))
+    (when (> (getf item :price-month) 0) (c. pmonthtip (format nil "~,2f" (getf item :price-month))))
+    (when (> (getf item :price-all) 0) (c. palltip (format nil "~,2f" (getf item :price-all))))
+
     ;; Assign values to the item row
     (setf (getf item :tooltip) tooltip
           (getf item :loretip) loretip
@@ -438,6 +448,9 @@ the time."
           (getf item :classtip) class
           (getf item :racetip) race
           (getf item :slottip) slot
+          (getf item :pweektip) pweektip
+          (getf item :pmonthtip) pmonthtip
+          (getf item :palltip) palltip
           )
 
     ;; Lastly, change any empty strings to nil so we can check in template
