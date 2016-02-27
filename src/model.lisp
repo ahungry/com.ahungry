@@ -29,6 +29,18 @@
 
 (in-readtable glyphs:syntax)
 
+;; Pull out the actual numeric for our passed in item
+;; Expect input like: listing | item
+(ƒ price-extract ~(format nil "(?i).*(~a.*?)([0-9kp]+?)([^0-9kp]|$).*" αb)~ → |"\\2"|)
+
+;; turn 1k into 1000
+(ƒ expand-ks ~"(?i)k+"~ → |"000"| α → α)
+
+(ƒ strip-non-numbers ~"\\D"~ → |""| α → α)
+
+;; Pull out a nicely formatted price
+(ƒ price-parse (price-extract α αb) → (strip-non-numbers (expand-ks (price-extract α αb))))
+
 (defparameter *pages* '((:title "Nothing...")))
 
 (defun populate-pages ()
@@ -98,7 +110,7 @@
 (defparameter *index-update-list* (list)
   "Keep track of auctions that need their indexes updated")
 
-(defun take-ids (ids &key (count 5))
+(defun take-ids (ids &key (count 25))
   "Given a string of ids: `1,2,3,4,5', return just a segment of them
 in descending order, in a list."
   (let ((id-list (sort (mapcar #'parse-integer (split-sequence #\, ids)) #'>)))
@@ -216,6 +228,31 @@ a frequent rate (similar to how the site is used)."
          (ids (mapcar (lambda (match) (getf match :id)) matches)))
     ids))
 
+(defun empty (i)
+  "If the item is either nil or 0."
+  (or (null i)
+      (eq 0 i)))
+
+(defun remove-by-date (matches seconds)
+  "Takes in a list of plists that has the date column, and filters by
+the time."
+  (remove-if (lambda (m)
+               (let ((seconds-ago (- (get-universal-time) (getf m :date))))
+                 (print seconds-ago)
+                 (print seconds)
+                 (> seconds-ago seconds))) matches))
+
+(defun get-price-average (name &key (max-days 7))
+  "Build a price average for the given item."
+  (let* ((matches (query-auctions-with-index name))
+         (seconds (* max-days 60 60 24))
+         (filtered (remove-by-date matches seconds))
+         (listings (mapcar (lambda (match) (getf match :listing)) filtered))
+         (sum-list (remove-if #'empty (mapcar (lambda (p) (parse-integer p :junk-allowed t))
+                                             (remove-if #'null (ψ listings α → (price-parse α name)))))))
+    (when (> (length sum-list) 0)
+      (float (/ (reduce #'+ sum-list) (length sum-list))))))
+
 (defun eq-item-index-exists-p (name)
   "See if we have an index entry for the name or not"
   (with-connection (db)
@@ -225,7 +262,7 @@ a frequent rate (similar to how the site is used)."
        (where (:= :name name))))))
 
 (defun populate-eq-item-index (name)
-  "In our database, populate item names/indexes for all available p99 items"
+  "In our database, populate item names/indexes for all available p99 items."
   (let* ((item-name name)
          (item-ids (get-auction-listing-ids item-name :max-days 3600)))
     (if (eq-item-index-exists-p item-name)
@@ -239,7 +276,17 @@ a frequent rate (similar to how the site is used)."
            (insert-into :eq_item_index
              (set= :name item-name
                    :ids (format nil "~{~a~^,~}" item-ids))))))
-    (print item-name)))
+    (print item-name)
+    (let ((price-week (get-price-average name :max-days 7))
+          (price-month (get-price-average name :max-days 30))
+          (price-all (get-price-average name :max-days 3600)))
+      (with-connection (db)
+        (execute
+         (update :eq_item_index
+           (set= :price_week price-week
+                 :price_month price-month
+                 :price_all price-all)
+           (where (:= :name item-name))))))))
 
 (defun populate-eq-item-index-via-queue ()
   "Run the index updates based on queued item lookups"
