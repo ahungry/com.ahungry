@@ -278,7 +278,7 @@ the time."
     (print item-name)
     (let* ((price-all (or (get-price-average name :max-days 3600) 0))
            (price-month (or (get-price-average name :max-days 30) price-all))
-           (price-week (or (get-price-average name :max-days 3600) price-month)))
+           (price-week (or (get-price-average name :max-days 7) price-month)))
       (with-connection (db)
         (execute
          (update :eq_item_index
