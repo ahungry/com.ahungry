@@ -21,6 +21,7 @@
    :get-ad
    :populate-eq-item-index
    :populate-all-eq-items
+   :price-all-eq-items
    ))
 (in-package :com.ahungry.model)
 
@@ -275,7 +276,10 @@ the time."
            (insert-into :eq_item_index
              (set= :name item-name
                    :ids (format nil "~{~a~^,~}" item-ids))))))
-    (print item-name)
+    (print item-name)))
+
+(defun price-eq-item-index (name)
+  "Set the prices for an item that exist in the index."
     (let* ((price-all (or (get-price-average name :max-days 3600) 0))
            (price-month (or (get-price-average name :max-days 30) price-all))
            (price-week (or (get-price-average name :max-days 7) price-month)))
@@ -285,7 +289,7 @@ the time."
            (set= :price_week price-week
                  :price_month price-month
                  :price_all price-all)
-           (where (:= :name item-name))))))))
+           (where (:= :name name)))))))
 
 (defun populate-eq-item-index-via-queue ()
   "Run the index updates based on queued item lookups"
@@ -302,10 +306,19 @@ the time."
 ;;(make-thread (lambda () (populate-threader)) :name "Population Thread")
 
 (defun populate-all-eq-items ()
-  "Do the population for all items"
+  "Do the population for all items."
   (let ((items (get-items)))
     (mapcar (lambda (item)
-              (populate-eq-item-index (getf item :name)))
+              (populate-eq-item-index (getf item :name))
+              (price-eq-item-index (getf item :name)))
+            items)))
+
+(defun price-all-eq-items ()
+  "Do the pricing for all items."
+  (let ((items (get-items)))
+    (mapcar (lambda (item)
+              (print item)
+              (price-eq-item-index (getf item :name)))
             items)))
 
 (defmacro c. (var string)
