@@ -210,7 +210,7 @@ a frequent rate (similar to how the site is used)."
        α → (append
             (list :time-ago
                   (time-ago-format
-                   (- (- (get-universal-time) (* 3600 5)) ;; EDT offset
+                   (- (- (get-universal-time) (* 3600 4)) ;; EDT offset
                       (getf α :date))))
             α))))
 
