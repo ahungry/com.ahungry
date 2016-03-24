@@ -191,7 +191,7 @@ a frequent rate (similar to how the site is used)."
     (cond ((>= days 1) (format nil "~a days ago" days))
           ((>= hours 1) (format nil "~a hours ago" hours))
           ((>= minutes 1) (format nil "~a minutes ago" minutes))
-          (t (format nil "~a seconds ago" seconds)))))
+          (t (format nil "~a seconds ago" (max seconds 0))))))
 
 (defun get-auctions (&key (limit 100) (type nil) (regex nil))
   "Query the auctions and apply some additional fields to them"
