@@ -55,18 +55,26 @@
 (defroute "/*/" (&key splat)
   (redirect (concatenate 'string "/" (car splat))))
 
+@route GET "/about-eqauctions"
+(defun about-eqauctions ()
+  (with-layout (:title "EQ Auction Logger"
+                       ;;:defjs (defjs:get-loader)
+                       :analytics nil
+                       :pages (get-matching-pages "/about-auctions/"))
+    (render #P"about-auctions.tmpl")))
+
 @route GET "/eqauctions"
 (defun eqauctions (&key (|limit| 100))
   (let ((auctions (get-auctions :limit |limit|)))
     (with-layout (:title "EQ Auction Logger"
                          ;;:defjs (defjs:get-loader)
-                         :analytics (get-ad "analytics")
+                         :analytics nil
                          :pages (get-matching-pages "/eqauctions/"))
       (render #P"auctions.tmpl"
               (list :auctions auctions
-                    :ad-one (get-ad "1")
-                    :ad-two (get-ad "2")
-                    :ad-three (get-ad "3"))))))
+                    :ad-one nil
+                    :ad-two nil
+                    :ad-three nil)))))
 
 @route POST "/eqauctions"
 (defun eqauctions-post (&key (|action| "searchAuctions")
