@@ -7,6 +7,6 @@
 *~
 .#*
 *.sql
-static/blog
-static/assets/*
+/static/blog
+/static/assets/*
 ads/*

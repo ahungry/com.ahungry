@@ -56,3 +56,16 @@ pre {
     color:#fff;
     text-decoration: none;
 }
+
+.btn {
+    background: #bbb;
+    border-radius: 3px;
+    color: #000;
+    padding: 8px;
+    text-decoration: none;
+    transition: all 200ms ease-in;
+}
+
+.btn:hover {
+    background: #fff;
+}

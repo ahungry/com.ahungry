@@ -7,13 +7,6 @@
   <button id="wiki-box-close" class="btn btn-default menu-btn wiki-box-btn">Close the wiki box</button>
 </div>
 
-<div class="ad-container">
-  <% @if ad-one %>
-    <% @var ad-one -escape raw %>
-  <% @endif %>
-  <br style="clear:both;">
-</div>
-
 <p class="hide-ad-container">
   <a id="hide-ads">Click here to show the ads and explanation (click again to hide them)!</a>
 </p>
@@ -66,13 +59,6 @@
   <span style="color:orange;">See an item missing?  Email me at: 'm at ahungry dot com'</span>
 </form>
 
-<div id="ad-2" class="ad-container">
-  <% @if ad-two %>
-    <% @var ad-two -escape raw %>
-  <% @endif %>
-  <br style="clear:both;">
-</div>
-
 <div id="main">
   <% @var cms-content -escape raw %>
   <div id="auctions">
@@ -85,13 +71,5 @@
       <% @endloop %>
     </div>
   </div>
-
   <br style="clear:both;">
-
-  <div class="ad-container">
-    <% @if ad-three %>
-      <% @var ad-three -escape raw %>
-    <% @endif %>
-    <br style="clear:both;">
-  </div>
 </div>
