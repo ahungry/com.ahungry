@@ -1,24 +1,12 @@
 <link href="/css/eqauctions.css" rel="stylesheet" />
 
+<p>
+  Not the item you were looking for?  Go <a href="/eqauctions">back</a> and
+  try again! (use an exact name - otherwise this result is the best
+  guess match)
+</p>
+
 <% @loop item %>
-
-  <div class="item-price">
-    <h1>
-      <% @var name %><br>
-    </h1>
-
-    <% @if pweektip %>
-      $ Week: <% @var pweektip %><br>
-    <% @endif %>
-
-    <% @if pmonthtip %>
-      $ Month: <% @var pmonthtip %><br>
-    <% @endif %>
-
-    <% @if palltip %>
-      $ All Time: <% @var palltip %><br>
-    <% @endif %>
-  </div>
 
   <div class="item-detail">
 
@@ -78,6 +66,20 @@
     <% @if racetip %>
       Race: <% @var racetip %><br>
     <% @endif %>
+
+    <div class="item-price">
+      <% @if pweektip %>
+        $ Week: <% @var pweektip %> <span class="price-space">/</span>
+      <% @endif %>
+
+      <% @if pmonthtip %>
+        $ Month: <% @var pmonthtip %> <span class="price-space">/</span>
+      <% @endif %>
+
+      <% @if palltip %>
+        $ All Time: <% @var palltip %> <span class="price-space">/</span>
+      <% @endif %>
+    </div>
 
   </div>
 <% @endloop %>

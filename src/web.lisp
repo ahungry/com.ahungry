@@ -55,7 +55,7 @@
 (defroute "/*/" (&key splat)
   (redirect (concatenate 'string "/" (car splat))))
 
-@route GET "/about-eqauctions"
+@route GET "/eqauctions"
 (defun about-eqauctions ()
   (with-layout (:title "EQ Auction Logger"
                        ;;:defjs (defjs:get-loader)
@@ -63,7 +63,7 @@
                        :pages (get-matching-pages "/"))
     (render #P"about-auctions.tmpl")))
 
-@route GET "/eqauctions"
+@route GET "/eqauctions-live"
 (defun eqauctions (&key (|limit| 100))
   (let ((auctions (get-auctions :limit |limit|)))
     (with-layout (:title "EQ Auction Logger"
@@ -76,7 +76,7 @@
                     :ad-two nil
                     :ad-three nil)))))
 
-@route POST "/eqauctions"
+@route POST "/eqauctions-live"
 (defun eqauctions-post (&key (|action| "searchAuctions")
                           (|limit| 10)
                           (|regex| nil))
@@ -85,13 +85,15 @@
             (list :auctions auctions))))
 
 (defroute "/action/eq/item-detail/*" (&key splat)
+  (let* ((item (get-item-loosely-by-name (car splat)))
+         (auctions (get-auctions :regex (getf item :name))))
   (with-layout (:title "EQ Auction Logger"
                        ;;:defjs (defjs:get-loader)
                        :analytics nil
                        :pages (get-matching-pages "/"))
     (render #P"item-detail.tmpl"
-            (list :item (list (get-item-loosely-by-name (car splat)))
-                  :auctions (get-auctions :regex (car splat))))))
+            (list :item (list item)
+                  :auctions auctions)))))
 
 ;;@route GET "/defjs.js"
 ;;(defun defjs-js ()

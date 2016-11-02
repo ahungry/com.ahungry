@@ -1,5 +1,30 @@
 <div id="about-logger">
   <h3>Welcome to the <a href="http://project1999.com">Project1999</a> EQ Auction Logger!</h3>
+
+  <p>
+    Looking for the old page?  That's under the
+    <a class="btn" href="/eqauctions-live">
+      live feed page!
+    </a>
+  </p>
+
+  <h3>Search for a specific item by name:</h3>
+
+  <form id="item-detail-search"
+        method="get"
+        action="/action/eq/item-details/"
+        onsubmit="eq.item.detail(this); return false;">
+    <input type="text" name="item" id="is-filter" autocomplete="off">
+    <input type="submit" value="go">
+    <input type="button" id="reset" value="Reset search">
+  </form>
+
+  <div id="detail-item-list">
+    <select id="item-search-detail" class="btn" multiple>
+      <option value="" selected>Show all items</option>
+    </select>
+  </div>
+
   <p>
     The auction logger works by having the p1999 gaming community upload
     logs from their local log file (turned on by typing /log in game)
@@ -17,13 +42,4 @@
     <a href="http://www.project1999.com/forums/showthread.php?t=65187">Project1999 Forum</a>
   </p>
 
-  <div class="tip">
-    Filter the list by typing an item name in the input box.
-    <br>
-    You can search for multiple items at once by separating with
-    a pipe | symbol (just above your ENTER key).
-    <br>
-    Please note that you can only view one item result at a time
-    for the moment.
-  </div>
 </div>

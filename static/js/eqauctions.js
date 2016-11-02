@@ -1,11 +1,11 @@
 var mobile = null
-//Define regexes
-var item  = new RegExp(/([A-Z][a-z][A-Za-z ':`\-]+?)([^A-Za-z ':`\-])/g)
-var add_  = new RegExp(/([a-z])([A-Z])/g)
-var sell  = new RegExp(/([ ]*?)(Selling|Seller|WTS)([: ]*?)/gi)
-var buy   = new RegExp(/([ ]*?)(Offering|Buying|WTB)([: ]*?)/gi)
-var caps  = new RegExp(/( [A-Z][A-Z])/g)
-var dash  = new RegExp(/[\-\|]+? /g)
+// Define regexes
+var item = new RegExp(/([A-Z][a-z][A-Za-z ':`\-]+?)([^A-Za-z ':`\-])/g)
+var add_ = new RegExp(/([a-z])([A-Z])/g)
+var sell = new RegExp(/([ ]*?)(Selling|Seller|WTS)([: ]*?)/gi)
+var buy = new RegExp(/([ ]*?)(Offering|Buying|WTB)([: ]*?)/gi)
+var caps = new RegExp(/( [A-Z][A-Z])/g)
+var dash = new RegExp(/[\-\|]+? /g)
 var dash2 = new RegExp(/ [\-\|]+?/g)
 var dash3 = new RegExp(/[\-]{3,10}/g)
 var pipes = new RegExp(/\|/g)
@@ -13,13 +13,13 @@ var pipes = new RegExp(/\|/g)
 var item_search_list = ''
 
 function prune_item_search_list() {
-  $('#item-search').html(item_search_list)
+  $('#item-search, #item-search-detail').html(item_search_list)
 
   var term   = $('#is-filter').val()
   var filter = new RegExp(term, 'i')
   var found  = 0
 
-  $('#item-search').find('option').each(function() {
+  $('#item-search, #item-search-detail').find('option').each(function() {
     if (!filter.test($(this).val()))
     {
       $(this).remove()
@@ -30,11 +30,11 @@ function prune_item_search_list() {
     }
   })
 
-  $('#item-search').prepend('<option value="'+term+'">[?] '+term+'</option>')
+  $('#item-search, #item-search-detail').prepend('<option value="'+term+'">[?] '+term+'</option>')
   found++
 
   var h = 10 + found * 18
-  $('#item-search').css({'height':h > 200 ? 200 : h})
+  $('#item-search, #item-search-detail').css({'height':h > 200 ? 200 : h})
 }
 
 function checkMobile() {
@@ -80,7 +80,7 @@ function findItems(target) {
 }
 
 function searchP() {
-  var regex  = $('#item-search').val()
+  var regex  = $('#item-search, #item-search-detail').val()
   var type   = $('#search-type').val()
 
   $.ajax({
@@ -140,7 +140,7 @@ $(document).ready(function() {
 
   $('#reset').click(function() {
     $('#is-filter').val('')
-    $('#item-search').html(item_search_list)
+    $('#item-search, #item-search-detail').html(item_search_list)
     setTimeout(function() { searchP(); }, 2000)
   })
 
@@ -168,7 +168,7 @@ $(document).ready(function() {
       success: function(res) {
 	$('#advancedMatches').html(res)
 	findItems('#advancedMatches')
-	$('#item-search').val(res)
+	$('#item-search, #item-search-detail').val(res)
 	searchP()
       }
     })
@@ -188,16 +188,17 @@ $(document).ready(function() {
   })
 
   $('#is-filter').keyup(function() {
+    console.log('filter time')
     clearTimeout(pruneTO)
     pruneTO = setTimeout(function() {prune_item_search_list();}, 500)
   })
 
-  $('#item-search').change(function() {
+  $('#item-search, #item-search-detail').change(function() {
     clearTimeout(filterTO)
     filterTO = setTimeout(function() {searchP();}, 100)
   })
 
-  $('#item-search').keyup(function() {
+  $('#item-search, #item-search-detail').keyup(function() {
     clearTimeout(filterTO)
     filterTO = setTimeout(function() {searchP();}, 100)
   })
@@ -252,13 +253,13 @@ $(document).ready(function() {
   setInterval(function() { searchP(); }, 30000)
 
   if (localStorage.itemList) {
-    $('#item-search').html(localStorage.itemList)
-    item_search_list = $('#item-search').html()
+    $('#item-search, #item-search-detail').html(localStorage.itemList)
+    item_search_list = $('#item-search, #item-search-detail').html()
   } else {
     $.getScript('/options.js', function() {
       populate_item_search()
-      localStorage.itemList = $('#item-search').html()
-      item_search_list = $('#item-search').html()
+      localStorage.itemList = $('#item-search, #item-search-detail').html()
+      item_search_list = $('#item-search, #item-search-detail').html()
     })
   }
 })

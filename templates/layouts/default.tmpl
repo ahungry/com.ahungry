@@ -13,11 +13,10 @@
     </div>
 
     <div id="menu">
-      <a href="/" class="btn btn-default menu-btn">Home</a>
-      <a href="/blog" class="btn btn-default menu-btn">Blog</a>
-      <% @loop pages %>
-        <a href="<% @var uri %>" class="btn btn-default menu-btn"><% @var title %></a>
-      <% @endloop %>
+      <a href="/" class="btn btn-default menu-btn">home</a>
+      <a href="/blog" class="btn btn-default menu-btn">blog</a>
+      <a href="/eqauctions" class="btn btn-default menu-btn">eqauctions</a>
+      <a href="/eqauctions-live" class="btn btn-default menu-btn">eqauctions live</a>
       <br style="clear:both;">
     </div>
 
@@ -27,5 +26,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="/js/eqauctions.js"></script>
+    <script src="/js/eq-item-detail.js"></script>
   </body>
 </html>

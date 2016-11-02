@@ -263,38 +263,3 @@ a:hover {
 #about-logger {
     display:none;
 }
-
-h1 {
-    color: orange;
-    margin:0;
-    padding:10px;
-}
-
-.item-detail {
-    background: #666;
-    border: 2px solid #ffffff;
-    color: #ffffff;
-    display: block;
-    float: right;
-    margin-bottom:15px;
-    padding: 8px;
-    margin-left: 8px;
-    max-width: 600px;
-}
-
-.item-price {
-    color: orange;
-    display: block;
-    float: left;
-    font-size: 1.8em;
-    text-align: right;
-}
-
-.item-detail-auctions {
-    text-align: justify;
-}
-
-.item-detail-auctions .auc {
-    color: #666;
-    padding-bottom: 8px;
-}

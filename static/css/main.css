@@ -1,6 +1,7 @@
 html, body {
     background:#222;
     color:#fff;
+    font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -40,7 +41,6 @@ pre {
     color: #fff;
     display:block;
     float:left;
-    font-family:serif;
     font-size:.9em;
     margin:3px;
     overflow:hidden;
@@ -58,9 +58,11 @@ pre {
 }
 
 .btn {
-    background: #bbb;
+    background: #fff;
     border-radius: 3px;
-    color: #000;
+    color: #666;
+    cursor: pointer;
+    font-family: monospace;
     padding: 8px;
     text-decoration: none;
 }
@@ -76,4 +78,33 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.item-detail {
+    background: #333;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    display: block;
+    margin-bottom:15px;
+    margin: auto;
+    max-width: 50%;
+    padding: 8px;
+}
+
+.item-price {
+    color: orange;
+    display: block;
+}
+
+.item-detail-auctions {
+    text-align: justify;
+}
+
+.item-detail-auctions .auc {
+    padding-bottom: 8px;
+}
+
+.price-space {
+    padding-left: 12px;
+    padding-right: 12px;
 }
