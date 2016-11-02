@@ -28,8 +28,8 @@
 ;; Routing rules
 
 ;;(defjs:start-websocket-server
- ;;:port 54321
- ;;:server-name (or (sb-ext:posix-getenv "COM_AHUNGRY_SERVER_NAME") "localhost"))
+;;:port 54321
+;;:server-name (or (sb-ext:posix-getenv "COM_AHUNGRY_SERVER_NAME") "localhost"))
 
 (defroute "/" ()
   (let ((cms-content (get-page-content "/")))
@@ -60,7 +60,7 @@
   (with-layout (:title "EQ Auction Logger"
                        ;;:defjs (defjs:get-loader)
                        :analytics nil
-                       :pages (get-matching-pages "/about-auctions/"))
+                       :pages (get-matching-pages "/"))
     (render #P"about-auctions.tmpl")))
 
 @route GET "/eqauctions"
@@ -69,7 +69,7 @@
     (with-layout (:title "EQ Auction Logger"
                          ;;:defjs (defjs:get-loader)
                          :analytics nil
-                         :pages (get-matching-pages "/eqauctions/"))
+                         :pages (get-matching-pages "/"))
       (render #P"auctions.tmpl"
               (list :auctions auctions
                     :ad-one nil
@@ -84,9 +84,18 @@
     (render #P"auction-stub.tmpl"
             (list :auctions auctions))))
 
+(defroute "/action/eq/item-detail/*" (&key splat)
+  (with-layout (:title "EQ Auction Logger"
+                       ;;:defjs (defjs:get-loader)
+                       :analytics nil
+                       :pages (get-matching-pages "/"))
+    (render #P"item-detail.tmpl"
+            (list :item (list (get-item-loosely-by-name (car splat)))
+                  :auctions (get-auctions :regex (car splat))))))
+
 ;;@route GET "/defjs.js"
 ;;(defun defjs-js ()
-  ;;(defjs:page-js))
+;;(defjs:page-js))
 @route GET "/options.js"
 (defun eqauctions-options ()
   (setf (getf (response-headers *response*) :content-type) "text/javascript")

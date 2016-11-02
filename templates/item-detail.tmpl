@@ -1,0 +1,96 @@
+<link href="/css/eqauctions.css" rel="stylesheet" />
+
+<% @loop item %>
+
+  <div class="item-price">
+    <h1>
+      <% @var name %><br>
+    </h1>
+
+    <% @if pweektip %>
+      $ Week: <% @var pweektip %><br>
+    <% @endif %>
+
+    <% @if pmonthtip %>
+      $ Month: <% @var pmonthtip %><br>
+    <% @endif %>
+
+    <% @if palltip %>
+      $ All Time: <% @var palltip %><br>
+    <% @endif %>
+  </div>
+
+  <div class="item-detail">
+
+    <% @if icon %>
+      <img src='http://wiki.project1999.com/images/Item_<% @var icon %>.png' style='float:right;padding:10px;'>
+    <% @endif %>
+
+    <% @var name %><br>
+    <% @var tooltip %><br>
+    <% @var loretip %><br>
+    Slot: <% @var slottip %><br>
+
+    <% @if delaytip %>
+      <% @var delaytip %><br>
+    <% @endif %>
+
+    <% @if dpstip %>
+      <% @var dpstip %><br>
+    <% @endif %>
+
+    <% @if hastetip %>
+      <% @var hastetip %><br>
+    <% @endif %>
+
+    <% @if regentip %>
+      <% @var regentip %><br>
+    <% @endif %>
+
+    <% @if statstip %>
+      <% @var statstip %><br>
+    <% @endif %>
+
+    <% @if resiststip %>
+      <% @var resiststip %><br>
+    <% @endif %>
+
+    <% @if proctip %>
+      <% @var proctip %><br>
+    <% @endif %>
+
+    <% @if clicktip %>
+      <% @var clicktip %><br>
+    <% @endif %>
+
+    <% @if weighttip %>
+      WT: <% @var weighttip %>
+    <% @endif %>
+
+    <% @if sizetip %>
+      Size: <% @var sizetip %><br>
+    <% @endif %>
+
+    <% @if classtip %>
+      Class: <% @var classtip %><br>
+    <% @endif %>
+
+    <% @if racetip %>
+      Race: <% @var racetip %><br>
+    <% @endif %>
+
+  </div>
+<% @endloop %>
+
+<br style="clear:both;" />
+
+<% @loop auctions %>
+  <div class="item-detail-auctions">
+    <div class='auc'>
+      [<b class='aud'><% @var time-ago %></b>]
+      <b class='slr'>
+        <% @var seller %>
+      </b> auctions, '<b class='aul'><% @var listing %>.</b>'
+    </div>
+  </div>
+<% @endloop %>
