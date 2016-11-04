@@ -8,7 +8,7 @@ var eq = {
 
       window.location.href = [
         '/action/eq/item-detail/',
-        value.replace(/ /, '+')
+        value.replace(/ /g, '+')
       ].join('')
 
       return false
@@ -28,7 +28,7 @@ $('#item-search-detail').click(function () {
 
   window.location.href = [
     '/action/eq/item-detail/',
-    elem.value.replace(/ /, '+')
+    elem.value.replace(/ /g, '+')
   ].join('')
 })
 
