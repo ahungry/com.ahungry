@@ -1,3 +1,6 @@
+/* global $, alert, localStorage, populateItemSearch */
+/* eslint-env jquery, browser */
+
 var mobile = null
 // Define regexes
 var item = new RegExp(/([A-Z][a-z][A-Za-z ':`\-]+?)([^A-Za-z ':`\-])/g)
@@ -10,58 +13,56 @@ var dash2 = new RegExp(/ [\-\|]+?/g)
 var dash3 = new RegExp(/[\-]{3,10}/g)
 var pipes = new RegExp(/\|/g)
 
-var item_search_list = ''
+var itemSearchList = ''
 
-function prune_item_search_list() {
-  $('#item-search, #item-search-detail').html(item_search_list)
+function pruneItemSearchList () {
+  console.log('filter time')
+  $('#item-search, #item-search-detail').html(itemSearchList)
 
-  var term   = $('#is-filter').val()
+  var term = $('#is-filter').val()
   var filter = new RegExp(term, 'i')
-  var found  = 0
+  var found = 0
 
-  $('#item-search, #item-search-detail').find('option').each(function() {
-    if (!filter.test($(this).val()))
-    {
+  $('#item-search, #item-search-detail').find('option').each(function () {
+    if (!filter.test($(this).val())) {
       $(this).remove()
-    }
-    else
-    {
+    } else {
       found++
     }
   })
 
-  $('#item-search, #item-search-detail').prepend('<option value="'+term+'">[?] '+term+'</option>')
+  $('#item-search, #item-search-detail').prepend('<option value="' + term + '">[?] ' + term + '</option>')
   found++
 
   var h = 10 + found * 18
-  $('#item-search, #item-search-detail').css({'height':h > 200 ? 200 : h})
+  $('#item-search, #item-search-detail').css({'height': h > 200 ? 200 : h})
 }
 
-function checkMobile() {
-  mobile = /android.+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent||navigator.vendor||window.opera)
-  if(mobile) {
-    $('#wrap').css({'margin':'0px'})
-    $('#content').css({'padding':'0px'})
+function checkMobile () {
+  mobile = /android.+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent || navigator.vendor || window.opera)
+  if (mobile) {
+    $('#wrap').css({'margin': '0px'})
+    $('#content').css({'padding': '0px'})
   }
 }
 
-function itemInfo(item_name) {
-  if(mobile) return false
-  var url = 'http://wiki.project1999.com/index.php/' + item_name
+function itemInfo (itemName) {
+  if (mobile) return false
+  var url = 'http://wiki.project1999.com/index.php/' + itemName
   $('#wiki-box-loading').show()
   $('#wiki-box iframe').hide()
-  $('#wiki-box iframe').attr({'src':url})
+  $('#wiki-box iframe').attr({'src': url})
   $('#wiki-box').show()
-  setTimeout(function() {
+  setTimeout(function () {
     $('#wiki-box-loading').hide()
     $('#wiki-box iframe').show()
   }, 2000)
   return false
 }
 
-function findItems(target) {
-  target = target ? target : '.aul'
-  $(target).each(function() {
+function findItems (target) {
+  target = target || '.aul'
+  $(target).each(function () {
     var text = $(this).html()
     text = text.replace(add_, '$1, $2')
     text = text.replace(sell, '$1(WTS)$3')
@@ -76,35 +77,35 @@ function findItems(target) {
     $(this).html(text)
   })
 
-  init_ii_watchers()
+  initIiWatchers()
 }
 
-function searchP() {
-  var regex  = $('#item-search, #item-search-detail').val()
-  var type   = $('#search-type').val()
+function searchP () {
+  var regex = $('#item-search, #item-search-detail').val()
+  var type = $('#search-type').val()
 
   $.ajax({
-    url: '/action/eq/getItems/'+type+'/'+regex,
+    url: '/action/eq/getItems/' + type + '/' + regex,
     data: '',
     type: 'get',
-    success: function(res) {
+    success: function (res) {
       $('#listings').html(res)
-      setTimeout(function() { findItems(); }, 1)
+      setTimeout(function () { findItems() }, 1)
     }
   })
 }
 
-function toolTipPop() {
+function toolTipPop () {
   $('.itemTT').hide()
   var itt = $(lastItemHover).find('.itemTT')
-  if(itt.html() == '') {
+  if (itt.html() === '') {
     var item = $(lastItemHover).attr('alt')
     $.ajax({
-      url: '/action/eq/getItem/'+item,
+      url: '/action/eq/getItem/' + item,
       data: '',
       type: 'get',
-      success: function(res) {
-	itt.html(res).fadeIn(500)
+      success: function (res) {
+        itt.html(res).fadeIn(500)
       }
     })
   } else {
@@ -115,131 +116,129 @@ function toolTipPop() {
 var filterTO
 var pruneTO
 var lastItemHover = null
-var statTimeout   = null
+var statTimeout = null
 
-function init_ii_watchers () {
-  $('.ii').on('mouseover', function() {
+function initIiWatchers () {
+  $('.ii').on('mouseover', function () {
     lastItemHover = $(this)
-    statTimeout   = setTimeout(function() { toolTipPop()}, 300)
+    statTimeout = setTimeout(function () { toolTipPop() }, 300)
   })
 
-  $('.ii').on('mouseout', function() {
+  $('.ii').on('mouseout', function () {
     $('.itemTT').hide()
     clearTimeout(statTimeout)
     statTimeout = null
   })
 
-  $('.ii').on('click', function() {
-    var item_name = $(this).attr('alt')
-    itemInfo(item_name)
+  $('.ii').on('click', function () {
+    var itemName = $(this).attr('alt')
+    itemInfo(itemName)
     return false
   })
 }
 
-$(document).ready(function() {
-
-  $('#reset').click(function() {
+$(document).ready(function () {
+  $('#reset').click(function () {
     $('#is-filter').val('')
-    $('#item-search, #item-search-detail').html(item_search_list)
-    setTimeout(function() { searchP(); }, 2000)
+    $('#item-search, #item-search-detail').html(itemSearchList)
+    setTimeout(function () { searchP() }, 2000)
   })
 
-  $('#is-filter-go').click(function() {
-    prune_item_search_list()
+  $('#is-filter-go').click(function () {
+    pruneItemSearchList()
   })
 
   var aucPage = /eqauctions/.test(window.location.href)
 
-  if(!aucPage) { return; }
+  if (!aucPage) { return }
 
   checkMobile()
   findItems()
 
   $('#advancedSearch').hide()
-  $('#aTog').click(function() {
+  $('#aTog').click(function () {
     $('#advancedSearch').toggle()
   })
 
-  $('#advancedSearch').submit(function() {
+  $('#advancedSearch').submit(function () {
     $.ajax({
       url: '/action/eq/searchItem/',
       data: $(this).serialize(),
       type: 'post',
-      success: function(res) {
-	$('#advancedMatches').html(res)
-	findItems('#advancedMatches')
-	$('#item-search, #item-search-detail').val(res)
-	searchP()
+      success: function (res) {
+        $('#advancedMatches').html(res)
+        findItems('#advancedMatches')
+        $('#item-search, #item-search-detail').val(res)
+        searchP()
       }
     })
     return false
   })
 
-  init_ii_watchers()
+  initIiWatchers()
 
-  $('#itemGo').click(function() {
-    var item_name = $('.item_name').val()
-    itemInfo(item_name)
+  $('#itemGo').click(function () {
+    var itemName = $('.item_name').val()
+    itemInfo(itemName)
   })
 
-  $('#search-type').change(function() {
+  $('#search-type').change(function () {
     clearTimeout(filterTO)
-    filterTO = setTimeout(function() {searchP();}, 100)
+    filterTO = setTimeout(function () { searchP() }, 100)
   })
 
-  $('#is-filter').keyup(function() {
-    console.log('filter time')
+  $('#is-filter').keyup(function () {
     clearTimeout(pruneTO)
-    pruneTO = setTimeout(function() {prune_item_search_list();}, 500)
+    pruneTO = setTimeout(function () { pruneItemSearchList() }, 500)
   })
 
-  $('#item-search, #item-search-detail').change(function() {
+  $('#item-search, #item-search-detail').change(function () {
     clearTimeout(filterTO)
-    filterTO = setTimeout(function() {searchP();}, 100)
+    filterTO = setTimeout(function () { searchP() }, 100)
   })
 
-  $('#item-search, #item-search-detail').keyup(function() {
+  $('#item-search, #item-search-detail').keyup(function () {
     clearTimeout(filterTO)
-    filterTO = setTimeout(function() {searchP();}, 100)
+    filterTO = setTimeout(function () { searchP() }, 100)
   })
   searchP()
 
-  $('#afForm').submit(function() {
+  $('#afForm').submit(function () {
     searchP()
     return false
   })
 
-  $('.equser').submit(function() {
+  $('.equser').submit(function () {
     $.ajax({
       url: '/equser.php',
       type: 'post',
       data: $(this).serialize(),
-      success: function(res) {
-	alert(res)
-	window.location.reload()
+      success: function (res) {
+        alert(res)
+        window.location.reload()
       }
     })
     return false
   })
 
-  $('.slr').on('mouseout', function() {
+  $('.slr').on('mouseout', function () {
     $('#flavorBar').hide()
   })
 
-  $('.slr').on('mouseover', function() {
+  $('.slr').on('mouseover', function () {
     $('#flavorBar').show()
-    var who=$(this).html()
+    var who = $(this).html()
     $.ajax({
       url: '/equser.php',
       type: 'get',
-      data: 'action=getAliases&who='+who,
-      success: function(res) {
-	$('#flavorBar').html(res)
+      data: 'action=getAliases&who=' + who,
+      success: function (res) {
+        $('#flavorBar').html(res)
       }
     })
   })
 
-  $('#show-about').click(function() {
+  $('#show-about').click(function () {
     $('.hide-about').slideToggle()
   })
 
@@ -247,19 +246,19 @@ $(document).ready(function() {
     $('#wiki-box').hide()
   })
 
-  $('#auc-search').submit(function() { return false; })
+  $('#auc-search').submit(function () { return false })
 
-  //Auto refresh the most recent auctions
-  setInterval(function() { searchP(); }, 30000)
+  // Auto refresh the most recent auctions
+  setInterval(function () { searchP() }, 30000)
 
   if (localStorage.itemList) {
     $('#item-search, #item-search-detail').html(localStorage.itemList)
-    item_search_list = $('#item-search, #item-search-detail').html()
+    itemSearchList = $('#item-search, #item-search-detail').html()
   } else {
-    $.getScript('/options.js', function() {
-      populate_item_search()
+    $.getScript('/options.js', function () {
+      populateItemSearch()
       localStorage.itemList = $('#item-search, #item-search-detail').html()
-      item_search_list = $('#item-search, #item-search-detail').html()
+      itemSearchList = $('#item-search, #item-search-detail').html()
     })
   }
 })
