@@ -1,3 +1,6 @@
+/* global $, alert, localStorage */
+/* eslint-env jquery, browser */
+
 'use strict'
 
 var eq = {
