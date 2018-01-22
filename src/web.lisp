@@ -118,6 +118,13 @@
     (render #P"auction-stub.tmpl"
             (list :auctions auctions))))
 
+;; For the Emacs mode for reddit
+@route GET "/md4rd"
+(defun md4rd (&key (|code| 100))
+  (with-layout (:title "md4rd - An Emacs Mode for Reddit")
+    (render #P"md4rd.tmpl"
+            (list :code |code|))))
+
 (defroute "/*" (&key splat)
   (let* ((uri (format nil "/~a" (car splat)))
          (cms-content (get-page-content uri)))
