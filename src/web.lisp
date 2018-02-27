@@ -11,6 +11,7 @@
         :cl-annot ;; Needed to add this to use @route syntax
         :sxql
         ;;:defjs
+        :af.lib.hashy
         :glyphs)
   (:export :*web*))
 (in-package :com.ahungry.web)
@@ -118,6 +119,28 @@
   (let ((auctions (get-auctions :limit 100 :type (car splat) :regex nil)))
     (render #P"auction-stub.tmpl"
             (list :auctions auctions))))
+
+;; Get list of items with filter. (wtb / item-name)
+@route GET "/api/eq/get-item-listings/*/*.json"
+(defun eqauctions-get-item-listings-by-match (&key splat)
+  (print splat)
+  (let ((auctions (get-auctions :limit 30 :type (car splat) :regex (cadr splat))))
+    (setf (getf (response-headers *response*) :content-type) "application/json")
+    (format nil "[~{~a~^,~}]" (mapcar #'cl-json:encode-json-plist-to-string auctions))))
+
+;; Get list of items unfiltered. (wtb or wts etc.)
+@route GET "/api/eq/get-item-listings/*.json"
+(defun eqauctions-get-item-listings (&key splat)
+  (print splat)
+  (let ((auctions (get-auctions :limit 100 :type (car splat) :regex nil)))
+    (setf (getf (response-headers *response*) :content-type) "application/json")
+    (format nil "[~{~a~^,~}]" (mapcar #'cl-json:encode-json-plist-to-string auctions))))
+
+;; Look up a single item's details.
+@route GET "/api/eq/get-item/*.json"
+(defun eqauctions-get-item-json (&key splat)
+  (setf (getf (response-headers *response*) :content-type) "application/json")
+  (cl-json:encode-json-plist-to-string (get-item-loosely-by-name (car splat))))
 
 ;; For the Emacs mode for reddit
 @route GET "/md4rd"

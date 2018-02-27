@@ -24,8 +24,11 @@
                :bordeaux-threads
                :local-time
                ;;:defjs
+               :cl-json
+               :ahungry-fleece
                :glyphs)
-  :components ((:module "src"
+  :components ((
+                :module "src"
                 :components
                 ((:file "main" :depends-on ("config" "view" "db"))
                  (:file "web" :depends-on ("view" "model" "javascript"))
