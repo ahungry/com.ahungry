@@ -69,20 +69,27 @@
 
     <div class="item-price">
       <% @if pweektip %>
-        $ Week: <% @var pweektip %> <span class="price-space">/</span>
+	$ Week: <% @var pweektip %> <span class="price-space">/</span>
       <% @endif %>
 
       <% @if pmonthtip %>
-        $ Month: <% @var pmonthtip %> <span class="price-space">/</span>
+	$ Month: <% @var pmonthtip %> <span class="price-space">/</span>
       <% @endif %>
 
       <% @if palltip %>
-        $ All Time: <% @var palltip %> <span class="price-space">/</span>
+	$ All Time: <% @var palltip %> <span class="price-space">/</span>
       <% @endif %>
     </div>
 
   </div>
 <% @endloop %>
+
+<div class="ad-container">
+  <% @if ad-one %>
+    <% @var ad-one -escape raw %>
+  <% @endif %>
+  <br style="clear:both;">
+</div>
 
 <br style="clear:both;" />
 
@@ -91,7 +98,7 @@
     <div class='auc'>
       [<b class='aud'><% @var time-ago %></b>]
       <b class='slr'>
-        <% @var seller %>
+	<% @var seller %>
       </b> auctions, '<b class='aul'><% @var listing %>.</b>'
     </div>
   </div>

@@ -19,7 +19,10 @@ var eq = {
 
     reset: function () {
       var elem = document.getElementById('item-detail-search')
-      elem.getElementsByTagName('input')[0].value = ''
+
+      if (elem && elem.getElementsByTagName('input')[0]) {
+        elem.getElementsByTagName('input')[0].value = ''
+      }
     }
   }
 }

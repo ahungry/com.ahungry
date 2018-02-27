@@ -72,7 +72,7 @@
                          :pages (get-matching-pages "/"))
       (render #P"auctions.tmpl"
               (list :auctions auctions
-                    :ad-one nil
+                    :ad-one (get-ad "ai-ad")
                     :ad-two nil
                     :ad-three nil)))))
 
@@ -87,13 +87,14 @@
 (defroute "/action/eq/item-detail/*" (&key splat)
   (let* ((item (get-item-loosely-by-name (car splat)))
          (auctions (get-auctions :regex (getf item :name))))
-  (with-layout (:title "EQ Auction Logger"
-                       ;;:defjs (defjs:get-loader)
-                       :analytics nil
-                       :pages (get-matching-pages "/"))
-    (render #P"item-detail.tmpl"
-            (list :item (list item)
-                  :auctions auctions)))))
+    (with-layout (:title "EQ Auction Logger"
+                         ;;:defjs (defjs:get-loader)
+                         :analytics nil
+                         :pages (get-matching-pages "/"))
+      (render #P"item-detail.tmpl"
+              (list :item (list item)
+                    :ad-one (get-ad "ai-ad")
+                    :auctions auctions)))))
 
 ;;@route GET "/defjs.js"
 ;;(defun defjs-js ()

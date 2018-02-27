@@ -7,6 +7,13 @@
   <button id="wiki-box-close" class="btn btn-default menu-btn wiki-box-btn">Close the wiki box</button>
 </div>
 
+<div class="ad-container">
+  <% @if ad-one %>
+    <% @var ad-one -escape raw %>
+  <% @endif %>
+  <br style="clear:both;">
+</div>
+
 <p>
   <a href="/eqauctions">About the auction logger</a>
 </p>
@@ -34,10 +41,10 @@
   <div id="auctions">
     <div id="listings">
       <% @loop auctions %>
-        <div class="auc">
-          [<b class='aud'><% @var time-ago %></b>]
-          <b class='slr'><% @var seller %></b> auctions, '<b class='aul'><% @var listing %></b>'
-        </div>
+	<div class="auc">
+	  [<b class='aud'><% @var time-ago %></b>]
+	  <b class='slr'><% @var seller %></b> auctions, '<b class='aul'><% @var listing %></b>'
+	</div>
       <% @endloop %>
     </div>
   </div>
