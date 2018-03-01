@@ -60,7 +60,7 @@
 (defun about-eqauctions ()
   (with-layout (:title "EQ Auction Logger"
                        ;;:defjs (defjs:get-loader)
-                       :analytics nil
+                       :analytics (get-ad "analytics")
                        :pages (get-matching-pages "/"))
     (render #P"about-auctions.tmpl")))
 
@@ -69,7 +69,7 @@
   (let ((auctions (get-auctions :limit |limit|)))
     (with-layout (:title "EQ Auction Logger"
                          ;;:defjs (defjs:get-loader)
-                         :analytics nil
+                         :analytics (get-ad "analytics")
                          :pages (get-matching-pages "/"))
       (render #P"auctions.tmpl"
               (list :auctions auctions
@@ -90,7 +90,7 @@
          (auctions (get-auctions :regex (getf item :name))))
     (with-layout (:title "EQ Auction Logger"
                          ;;:defjs (defjs:get-loader)
-                         :analytics nil
+                         :analytics (get-ad "analytics")
                          :pages (get-matching-pages "/"))
       (render #P"item-detail.tmpl"
               (list :item (list item)
