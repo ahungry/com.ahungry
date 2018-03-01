@@ -155,7 +155,7 @@
     (unless cms-content (throw-code 404))
     (with-layout (:title (car splat)
                          ;;:defjs (defjs:get-loader)
-                         :analytics nil
+                         :analytics (get-ad "analytics")
                          :pages (get-matching-pages (format nil "~a/" uri)))
       (render #P"index.tmpl"
               (list :cms-content cms-content)))))
