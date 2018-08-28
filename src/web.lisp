@@ -36,7 +36,7 @@
   (let ((cms-content (get-page-content "/")))
     (with-layout (:title "Welcome to Ahungry"
                          ;;:defjs (defjs:get-loader)
-                         :analytics (get-ad "analytics")
+                         ;; :analytics (get-ad "analytics")
                          :pages (get-matching-pages "/"))
       (render #P"index.tmpl"
               (list :cms-content cms-content)))))
@@ -60,7 +60,7 @@
 (defun about-eqauctions ()
   (with-layout (:title "EQ Auction Logger"
                        ;;:defjs (defjs:get-loader)
-                       :analytics (get-ad "analytics")
+                       ;; :analytics (get-ad "analytics")
                        :pages (get-matching-pages "/"))
     (render #P"about-auctions.tmpl")))
 
@@ -69,13 +69,14 @@
   (let ((auctions (get-auctions :limit |limit|)))
     (with-layout (:title "EQ Auction Logger"
                          ;;:defjs (defjs:get-loader)
-                         :analytics (get-ad "analytics")
+                         ;; :analytics (get-ad "analytics")
                          :pages (get-matching-pages "/"))
       (render #P"auctions.tmpl"
               (list :auctions auctions
-                    :ad-one (get-ad "ai-ad")
-                    :ad-two nil
-                    :ad-three nil)))))
+                    ;; :ad-one (get-ad "ai-ad")
+                    ;; :ad-two nil
+                    ;; :ad-three nil
+                    )))))
 
 @route POST "/eqauctions-live"
 (defun eqauctions-post (&key (|action| "searchAuctions")
@@ -90,11 +91,11 @@
          (auctions (get-auctions :regex (getf item :name))))
     (with-layout (:title "EQ Auction Logger"
                          ;;:defjs (defjs:get-loader)
-                         :analytics (get-ad "analytics")
+                         ;; :analytics (get-ad "analytics")
                          :pages (get-matching-pages "/"))
       (render #P"item-detail.tmpl"
               (list :item (list item)
-                    :ad-one (get-ad "ai-ad")
+                    ;; :ad-one (get-ad "ai-ad")
                     :auctions auctions)))))
 
 ;;@route GET "/defjs.js"
@@ -155,7 +156,7 @@
     (unless cms-content (throw-code 404))
     (with-layout (:title (car splat)
                          ;;:defjs (defjs:get-loader)
-                         :analytics (get-ad "analytics")
+                         ;; :analytics (get-ad "analytics")
                          :pages (get-matching-pages (format nil "~a/" uri)))
       (render #P"index.tmpl"
               (list :cms-content cms-content)))))
