@@ -193,6 +193,10 @@ a frequent rate (similar to how the site is used)."
           ((>= minutes 1) (format nil "~a minutes ago" minutes))
           (t (format nil "~a seconds ago" (max seconds 0))))))
 
+;; Daylight savings time can mess up our app, so, still, update twice a year.
+;; In spring, set to 4, in fall, set to 5.
+(defparameter *dst-offset* 4)
+
 (defun get-auctions (&key (limit 100) (type nil) (regex nil))
   "Query the auctions and apply some additional fields to them"
   (let ((limit (if (stringp limit) (parse-integer limit) limit)))
@@ -210,7 +214,7 @@ a frequent rate (similar to how the site is used)."
        α → (append
             (list :time-ago
                   (time-ago-format
-                   (- (- (get-universal-time) (* 3600 5)) ;; EDT offset
+                   (- (- (get-universal-time) (* 3600 *dst-offset*)) ;; EDT offset
                       (getf α :date))))
             α))))
 
