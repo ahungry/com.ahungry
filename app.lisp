@@ -28,7 +28,7 @@
 (builder
  (<clack-middleware-static>
   :path (lambda (path)
-          (if (ppcre:scan "^(?:/assets/|/blog/|/images/|/css/|/js/|/robot\\.txt$|/favicon.ico$)" path)
+          (if (ppcre:scan "^(?:/assets/|/projects/|/iosevka/|/blog/|/images/|/css/|/js/|/robot\\.txt$|/favicon.ico$)" path)
               path
               nil))
   :root *static-directory*)
