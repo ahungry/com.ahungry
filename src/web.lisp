@@ -52,6 +52,9 @@
 (defroute ("/blog[/]*" :regexp t) ()
   (redirect "/blog/index.html"))
 
+(defroute ("/projects[/]*" :regexp t) ()
+  (redirect "/projects/index.html"))
+
 ;; Redirect all trailing slash addresses to one sans-slash
 (defroute "/*/" (&key splat)
   (redirect (concatenate 'string "/" (car splat))))
