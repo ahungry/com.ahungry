@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2019-09-19 Thu 00:38 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Matthew Carter's &lt;m@ahungry.com&gt; Projects and Tinkerings</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Matthew Carter" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+
+<script type="text/javascript" src="http://orgmode.org/org-info.js">
+/**
+ *
+ * @source: http://orgmode.org/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in http://orgmode.org/org-info.js.
+ *
+ * Copyright (C) 2012-2017 Free Software Foundation, Inc.
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in http://orgmode.org/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "2");
+org_html_manager.set("LINK_HOME", "");
+org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LOCAL_TOC", "0");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "underline");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "info");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Matthew Carter's &lt;m@ahungry.com&gt; Projects and Tinkerings</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgb15cb46">Preamble</a></li>
+<li><a href="#org616383f">Websites</a>
+<ul>
+<li><a href="#org2594fcd">Ahungry Dot Com&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></a></li>
+<li><a href="#orgabb8e42">Sluglisp / Slugelisp / Slugclojure&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></a></li>
+<li><a href="#org210c2f5">Langpop&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></a></li>
+</ul>
+</li>
+<li><a href="#org255b383">Games</a>
+<ul>
+<li><a href="#orgd63e047">Magic Shield Attack&#xa0;&#xa0;&#xa0;<span class="tag"><span class="clojure">clojure</span>&#xa0;<span class="godot">godot</span></span></a></li>
+<li><a href="#orgddf7664">Pseudo&#xa0;&#xa0;&#xa0;<span class="tag"><span class="javascript">javascript</span>&#xa0;<span class="commonlisp">commonlisp</span></span></a></li>
+<li><a href="#orgda9be09">Ahungry Tactics&#xa0;&#xa0;&#xa0;<span class="tag"><span class="javascript">javascript</span></span></a></li>
+</ul>
+</li>
+<li><a href="#org995aab7">Emacs Lisp Packages&#xa0;&#xa0;&#xa0;<span class="tag"><span class="emacs">emacs</span></span></a>
+<ul>
+<li><a href="#org2a2fc04">Color Theme Ahungry&#xa0;&#xa0;&#xa0;<span class="tag"><span class="themes">themes</span>&#xa0;<span class="elisp">elisp</span></span></a></li>
+<li><a href="#org0ef1c92">Org Jira&#xa0;&#xa0;&#xa0;<span class="tag"><span class="jira">jira</span>&#xa0;<span class="elisp">elisp</span></span></a></li>
+<li><a href="#orge2acbd7">md4rd (mode for reddit, aka reddit-mode)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="elisp">elisp</span>&#xa0;<span class="reddit">reddit</span></span></a></li>
+</ul>
+</li>
+<li><a href="#orgb963014">Conclusion</a></li>
+<li><a href="#org7d3c3b7">Comments</a></li>
+</ul>
+</div>
+</div>
+<p>
+<b>HINT</b>: You can press 'n' and 'p' keys to navigate around quickly and
+read this as if it were a chapter book.  Alternatively, click in the
+top right corner to see it as a giant HTML document with folding, or
+just disable javascript if you'd prefer to see it as a massive in-line
+file.
+</p>
+
+<p>
+<b>BONUS HINT</b>: If you want to read about some particular subject, press
+'C' for a tags index (I tend to tag by programming language, or
+'thing').  You can use '?' to see more shortcuts, or click any HELP
+button.
+</p>
+
+<div id="outline-container-orgb15cb46" class="outline-2">
+<h2 id="orgb15cb46">Preamble</h2>
+<div class="outline-text-2" id="text-orgb15cb46">
+<p>
+Within this page, you will find some of the various projects that I've
+been working on / have worked on etc. with some thoughts and musings
+on each.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org616383f" class="outline-2">
+<h2 id="org616383f">Websites</h2>
+<div class="outline-text-2" id="text-org616383f">
+<p>
+Making websites is essentially where I began my programming career
+(more or less), so it's where I'll begin this list.
+</p>
+</div>
+<div id="outline-container-org2594fcd" class="outline-3">
+<h3 id="org2594fcd">Ahungry Dot Com&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></h3>
+<div class="outline-text-3" id="text-org2594fcd">
+<p>
+Site: <a href="http://ahungry.com">http://ahungry.com</a>
+</p>
+
+<p>
+Source: <a href="https://github.com/ahungry/com.ahungry">https://github.com/ahungry/com.ahungry</a>
+</p>
+
+<p>
+This site you're reading now.
+</p>
+
+<p>
+This project was written in Common Lisp circa 2015.  It was originally
+written in PHP circa 2010.  The site hosts the "Ahungry EQ Auction
+Logger" (<a href="http://ahungry.com/eqauctions">http://ahungry.com/eqauctions</a>).  This is a live-stream of the
+Project1999 Classic Everquest Emulator server
+(<a href="http://project1999.org">http://project1999.org</a>).  Around 5000 unique players come to the site
+daily to watch auctions of their favorite in-game items from out of
+game.
+</p>
+
+<p>
+Originally it was called the auction tracker, but someone emailed
+mentioning that that term is actually trademarked and my site was
+overshadowing their site (which was for tracking ebay auctions or
+something similar).  As such, the page title was renamed.
+</p>
+
+<p>
+There are a few main parts:
+</p>
+
+<ul class="org-ul">
+<li>A client binary written in C, bash, common lisp, or clojure, that
+uploads/streams logs to a remote listener on the server (used by the
+player base).</li>
+<li>A listener endpoint that drops the streaming logs in a "bucket" to
+be processed by a perl script that converts the logs into database entries.</li>
+<li>A database indexer written in common lisp, that works similar to
+ElasticSearch for performing fast "natural" word searches.</li>
+<li>The front end "client" (the auction page, consisting of
+javascript/html, served by a server-side rendered Common Lisp web app).</li>
+</ul>
+
+<p>
+The project is licensed AGPLv3 or later.
+</p>
+</div>
+</div>
+<div id="outline-container-orgabb8e42" class="outline-3">
+<h3 id="orgabb8e42">Sluglisp / Slugelisp / Slugclojure&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></h3>
+<div class="outline-text-3" id="text-orgabb8e42">
+<p>
+Sites:
+</p>
+<ul class="org-ul">
+<li><a href="http://sluglisp.ahungry.com">http://sluglisp.ahungry.com</a></li>
+<li><a href="http://slugelisp.ahungry.com">http://slugelisp.ahungry.com</a></li>
+<li><a href="http://slugclojure.ahungry.com">http://slugclojure.ahungry.com</a></li>
+</ul>
+
+<p>
+Sources:
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/ahungry/sluglisp">https://github.com/ahungry/sluglisp</a></li>
+<li><a href="https://github.com/ahungry/slugelisp">https://github.com/ahungry/slugelisp</a></li>
+<li><a href="https://github.com/ahungry/slugclojure">https://github.com/ahungry/slugclojure</a></li>
+</ul>
+
+<p>
+These 3 sites are all derivates of each other.  They list packages
+available in the Common Lisp (Quicklisp), Emacs Lisp (MELPA), and
+Clojure (Clojars) eco-systems.  They extend the native / "official"
+channel indexes (similar to javascript NPM / php packagist) by
+allowing regex search across the README files of the packages source
+code themselves, as well as a front end filter functionality.
+</p>
+
+<p>
+The underlying system is using the Common Lisp Caveman2 web stack.
+</p>
+
+<p>
+They work by indexing/pulling down the github star counts and README
+files, and essentially grepping them on demand, as a user interacts
+with the site(s).
+</p>
+
+<p>
+The projects are all licensed AGPLv3 or later.
+</p>
+</div>
+</div>
+<div id="outline-container-org210c2f5" class="outline-3">
+<h3 id="org210c2f5">Langpop&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></h3>
+<div class="outline-text-3" id="text-org210c2f5">
+<p>
+Site: <a href="http://lang-pop.ahungry.com">http://lang-pop.ahungry.com</a>
+</p>
+
+<p>
+Source: <a href="https://github.com/ahungry/language-popularity">https://github.com/ahungry/language-popularity</a>
+</p>
+
+<p>
+This site was created for my own usage, to quickly view "popularity"
+as derived from Reddit (<a href="https://old.reddit.com">https://old.reddit.com</a>) subscriber counts.
+</p>
+
+<p>
+The site was created in-tandem with a tutorial on using Common Lisp
+web frameworks
+(<a href="http://ahungry.com/blog/2015-07-07-Writing-a-Common-Lisp-Web-App.html">http://ahungry.com/blog/2015-07-07-Writing-a-Common-Lisp-Web-App.html</a>).
+</p>
+
+<p>
+It works by querying data from Reddit's API and making an on-demand
+pie chart for a visualization.
+</p>
+
+<p>
+License: AGPLv3 or later.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org255b383" class="outline-2">
+<h2 id="org255b383">Games</h2>
+<div class="outline-text-2" id="text-org255b383">
+<p>
+In addition to websites, I have tinkered with a variety of games, from
+web based games that cover a wide spectrum of implementations
+(javascript + canvas, javascript + dom manipulation), to SDL/OpenGL
+based native desktop games, to portable framework Godot
+(<a href="https://godotengine.org/">https://godotengine.org/</a>) games that run on webgl, android, and native.
+</p>
+</div>
+<div id="outline-container-orgd63e047" class="outline-3">
+<h3 id="orgd63e047">Magic Shield Attack&#xa0;&#xa0;&#xa0;<span class="tag"><span class="clojure">clojure</span>&#xa0;<span class="godot">godot</span></span></h3>
+<div class="outline-text-3" id="text-orgd63e047">
+<p>
+Site: <a href="http://magicshieldattack.com">http://magicshieldattack.com</a> (playable at link)
+</p>
+
+<p>
+Source: <a href="https://github.com/ahungry/magicshieldattack">https://github.com/ahungry/magicshieldattack</a>
+</p>
+
+<p>
+This one comes first, because it's my biggest focus (and
+procrastination).
+</p>
+
+<p>
+In this game, you move around a grid based world, similar to Final
+Fantasy Tactics (play it if you haven't, it's great).  The game plays
+like a never-ending roguelike, and as it is written in Godot for the
+front end, it's very portable.  Oh - did I mention (as with most my
+games) it's multiplayer?  The server side is written in Clojure.
+</p>
+
+<p>
+I still have a lot of work to do on this game, and my most critical
+reviewers for the game are my son and daughter - so, here's to hoping
+I finish it before they get too old to be interested in it /laugh.
+</p>
+
+<p>
+The game is my third big attempt at an online game, and unlike my
+first 2 attempts, it tries to remove a lot of the complexity that
+creeped in on the gameplay side, by keeping the game extremely basic
+at a game play level (think, rock paper scissors, but with movement of
+your character playing a role).
+</p>
+
+<p>
+License: AGPLv3
+</p>
+</div>
+</div>
+<div id="outline-container-orgddf7664" class="outline-3">
+<h3 id="orgddf7664">Pseudo&#xa0;&#xa0;&#xa0;<span class="tag"><span class="javascript">javascript</span>&#xa0;<span class="commonlisp">commonlisp</span></span></h3>
+<div class="outline-text-3" id="text-orgddf7664">
+<p>
+Site: <a href="http://pseudo.ahungry.com">http://pseudo.ahungry.com</a> (playable at link)
+</p>
+
+<p>
+Source: <a href="https://github.com/ahungry/pseudo">https://github.com/ahungry/pseudo</a>
+</p>
+
+<p>
+This game is a "pseudo" 2.5d game - it uses the ray casting technique
+to make it appear as if the game is 3d (the old Wolfenstein effect).
+</p>
+
+<p>
+The game is also multiplayer, but plays in a web browser.  The
+"rendering engine" are overlayed slices of DOM controlled via JS, and
+the game can run on a 2004 laptop with no lag or staggering.
+</p>
+
+<p>
+This game was my second big attempt at an online game.  It's very
+rogue-lite-esque, as it is essentially never ending, allows collecting
+of gear, and has the player dive down into dungeons.
+</p>
+
+<p>
+The sprites were fun to make on the game - they were done in Aseprite
+program.
+</p>
+
+<p>
+License: AGPLv3
+</p>
+</div>
+</div>
+<div id="outline-container-orgda9be09" class="outline-3">
+<h3 id="orgda9be09">Ahungry Tactics&#xa0;&#xa0;&#xa0;<span class="tag"><span class="javascript">javascript</span></span></h3>
+<div class="outline-text-3" id="text-orgda9be09">
+<p>
+Site: <a href="http://tactics.ahungry.com">http://tactics.ahungry.com</a>
+</p>
+
+<p>
+Source: <a href="https://github.com/ahungry/ahungry-tactics">https://github.com/ahungry/ahungry-tactics</a>
+</p>
+
+<p>
+Very original name right?  This is a Final Fantasy Tactics like game,
+where you move around on a grid system.  It uses websockets just like
+the Pseudo game to handle multiplayer.  It also sprinkles in some
+elements of the digital card game genre, so players collect cards to
+do their attacks (and can trade cards).
+</p>
+
+<p>
+The game was originally written using JS AJAX polling with a PHP
+backend / daemon that would update the game loop every 10 or so
+seconds. Over time, it was rewritten into Common Lisp like a lot of my
+other early PHP projects.
+</p>
+
+<p>
+License: APGLv3
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org995aab7" class="outline-2">
+<h2 id="org995aab7">Emacs Lisp Packages&#xa0;&#xa0;&#xa0;<span class="tag"><span class="emacs">emacs</span></span></h2>
+<div class="outline-text-2" id="text-org995aab7">
+<p>
+I enjoy using Emacs, and I also enjoy extending it (and sharing the
+extensions with the world).
+</p>
+
+<p>
+If you load up the package list in Emacs (M-x list-packages) and press
+'f' for filter, and type 'ahungry', you should, at a minimum, see:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">geben-helm-proj... 20160611.59   available  melpa      Integrate helm-projectile with geben
+prog-fill          20180607.132  available  melpa      Smartly format lines to use vertical space.
+swagger-to-org     20160611.56   available  melpa      Convert a swagger.json file into an org-mode file
+ahungry-theme      20180131.328  installed             Ahungry color theme for Emacs.  Make sure to <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>load-theme <span style="color: #0a3;">'ahungry).</span>
+<span style="color: #0a3;">md4rd              20190313.240  installed             Mode for reddit (browse it).</span>
+<span style="color: #0a3;">org-jira           20190712.443  installed             Syncing between Jira and Org-mode.</span>
+</pre>
+</div>
+
+<p>
+Those are packages I have added to GNU Elpa or MELPA at some point.
+</p>
+
+<p>
+I have a few more that I've added to Github, that I should still
+submit to one or the other (but occasionally the MELPA review process
+is a blocking point for getting the code accepted).
+</p>
+</div>
+
+<div id="outline-container-org2a2fc04" class="outline-3">
+<h3 id="org2a2fc04">Color Theme Ahungry&#xa0;&#xa0;&#xa0;<span class="tag"><span class="themes">themes</span>&#xa0;<span class="elisp">elisp</span></span></h3>
+<div class="outline-text-3" id="text-org2a2fc04">
+<p>
+Source: <a href="https://github.com/ahungry/color-theme-ahungry">https://github.com/ahungry/color-theme-ahungry</a>
+</p>
+
+<p>
+install from GELPA/MELPA: M-x package-install RET ahungry-theme
+</p>
+
+<p>
+For this package, I went through the copyright assignment papers and
+gave the full copyright to the Free Software Foundation (<a href="https://www.fsf.org/">https://www.fsf.org/</a>).
+</p>
+
+<p>
+Essentially its just a color theme for Emacs, but it was my first
+foray into an "official" Emacs contribution and GNU project.  The
+experience for contribution was very different than that of
+contributing to a Github issue, but the community/mailing list was
+extremely welcoming and encouraging.
+</p>
+
+<p>
+The package is available in GNU Elpa and MELPA package repositories.
+</p>
+
+<p>
+I have a branch with a "mello-theme" that I use day to day, that I
+<b>greatly</b> prefer compared to my original "master" branch theme that I
+had added to the GNU Elpa repository.  I should make that an official
+installable package.
+</p>
+
+<p>
+License: GPLv3
+</p>
+</div>
+</div>
+<div id="outline-container-org0ef1c92" class="outline-3">
+<h3 id="org0ef1c92">Org Jira&#xa0;&#xa0;&#xa0;<span class="tag"><span class="jira">jira</span>&#xa0;<span class="elisp">elisp</span></span></h3>
+<div class="outline-text-3" id="text-org0ef1c92">
+<p>
+Source: <a href="https://github.com/ahungry/org-jira">https://github.com/ahungry/org-jira</a>
+</p>
+
+<p>
+install from MELPA: M-x package-install RET org-jira
+</p>
+
+<p>
+This is a package that I took over when the old maintainer (Baohajun)
+went inactive due to no longer using Jira.
+</p>
+
+<p>
+It's probably my most starred github repository.
+</p>
+
+<p>
+It allows integration between Emacs' org-mode and the Jira ticket
+system by Atlassian.
+</p>
+
+<p>
+My first large contribution (that gained confidence to hand the
+package over to me) was a nearly full rewrite of the networking code,
+to take it from a synchronous/blocking package (aka, it would lock up
+Emacs entirely while pulling down Jira issues, much like GNUS in Emacs
+does) to a fully async/callback based variant (so, hundreds of issues
+can get pulled down without any interruption to the user of Emacs).
+</p>
+
+<p>
+I continue to maintain the package and try to be altruistic in serving
+the community with feature requests that I do not necessarily have a
+use for.
+</p>
+
+<p>
+License: GPLv3
+</p>
+</div>
+</div>
+<div id="outline-container-orge2acbd7" class="outline-3">
+<h3 id="orge2acbd7">md4rd (mode for reddit, aka reddit-mode)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="elisp">elisp</span>&#xa0;<span class="reddit">reddit</span></span></h3>
+<div class="outline-text-3" id="text-orge2acbd7">
+<p>
+Source: <a href="https://github.com/ahungry/md4rd">https://github.com/ahungry/md4rd</a>
+</p>
+
+<p>
+install from MELPA: M-x package-install RET md4rd
+</p>
+
+<p>
+This package is one I invented that went beyond a maintenance
+inheritance, or a color theme.  It was not necessarily the first, but
+it is definitely the most popular.
+</p>
+
+<p>
+It allows reading Reddit while in Emacs.  I got the idea while using
+the Emacs hacker news mode, and coming across a "hierarchy" Emacs
+package (essentially tree-like folding of any arbitrary data structures).
+</p>
+
+<p>
+It allows Oauth level sign in, which will permit the user to
+upvote/downvote/post comments on a main subject, or on another user's
+comments.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgb963014" class="outline-2">
+<h2 id="orgb963014">Conclusion</h2>
+<div class="outline-text-2" id="text-orgb963014">
+<p>
+If you think anything here looks particularly interesting, or just
+want to chat / mention / request something of me, feel free to drop me
+a line at m@ahungry.com, or ping me on twitter at
+<a href="https://twitter.com/_ahungry">https://twitter.com/_ahungry</a>, or leave a comment below.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7d3c3b7" class="outline-2">
+<h2 id="org7d3c3b7">Comments</h2>
+<div class="outline-text-2" id="text-org7d3c3b7">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ahungry'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<link href="projects.css" rel="stylesheet" type="text/css" />
+<script src="projects.js"></script>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Matthew Carter</p>
+<p class="date">Created: 2019-09-19 Thu 00:38</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
