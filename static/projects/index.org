@@ -1,8 +1,11 @@
 #+STARTUP: showall indent
 #+STARTUP: hidestars
 #+INFOJS_OPT: view:info toc:t ltoc:nil
-#+OPTIONS: H:2 num:nil tags:t toc:t timestamps:nil
-#+TITLE: Matthew Carter's <m@ahungry.com> Projects and Tinkerings
+#+OPTIONS: email:t H:2 num:nil tags:t toc:t timestamps:nil
+#+AUTHOR: Matthew Carter
+#+CREATOR: Matthew Carter
+#+EMAIL: m@ahungry.com
+#+TITLE: Matthew Carter's Projects and Tinkerings
 
 *HINT*: You can press 'n' and 'p' keys to navigate around quickly and
 read this as if it were a chapter book.  Alternatively, click in the
