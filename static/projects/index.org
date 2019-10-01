@@ -1,6 +1,6 @@
 #+STARTUP: showall indent
 #+STARTUP: hidestars
-#+INFOJS_OPT: view:info toc:t ltoc:nil
+#+XINFOJS_OPT: view:info toc:t ltoc:nil
 #+OPTIONS: email:t H:2 num:nil tags:t toc:t timestamps:nil
 #+AUTHOR: Matthew Carter
 #+CREATOR: Matthew Carter
