@@ -285,4 +285,16 @@ https://twitter.com/_ahungry, or leave a comment below.
 <link href="projects.css" rel="stylesheet" type="text/css" />
 <script src="projects.js"></script>
 <script src="org-info.js"></script>
+<script>
+org_html_manager.set("TOC_DEPTH", "2");
+org_html_manager.set("LINK_HOME", "");
+org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LOCAL_TOC", "0");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "underline");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "info");
+org_html_manager.setup();  // activate after the parameters are set
+</script>
 #+END_EXPORT
