@@ -284,4 +284,5 @@ https://twitter.com/_ahungry, or leave a comment below.
 #+BEGIN_EXPORT html
 <link href="projects.css" rel="stylesheet" type="text/css" />
 <script src="projects.js"></script>
+<script src="org-info.js"></script>
 #+END_EXPORT
