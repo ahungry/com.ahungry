@@ -265,21 +265,15 @@ https://twitter.com/_ahungry, or leave a comment below.
 
 * Comments
 #+BEGIN_EXPORT html
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'ahungry'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<iframe frameborder="0"
+  height="500"
+  width="800"
+  id="comments-frame"
+  style="width:800px;height:auto;"
+  src="https://comments.ahungry.com/?w=500"></iframe>
+<script src="https://comments.ahungry.com/iframe.js"></script>
 #+END_EXPORT
+fin.
 
 #+BEGIN_EXPORT html
 <link href="projects.css" rel="stylesheet" type="text/css" />
