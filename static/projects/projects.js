@@ -45,13 +45,13 @@ function removeItalics () {
 }
 
 // Hmm...what does this do, I wonder...
-function cleanUp () {
-  const nodes = document.querySelectorAll('iframe[sandbox]')
+// function cleanUp () {
+//   const nodes = document.querySelectorAll('iframe[sandbox]')
 
-  for (let i = nodes.length - 1; i > -1; i--) {
-    nodes[i].remove()
-  }
-}
+//   for (let i = nodes.length - 1; i > -1; i--) {
+//     nodes[i].remove()
+//   }
+// }
 
 function newTargetLinks () {
   const nodes = document.querySelectorAll('a')
@@ -70,7 +70,7 @@ window.onload = () => {
     document.getElementById('change-lang').addEventListener('change', changeLang)
   }
   removeItalics()
-  setInterval(cleanUp, 1e3)
+  // setInterval(cleanUp, 1e3)
   newTargetLinks()
 }
 
