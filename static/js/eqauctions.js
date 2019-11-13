@@ -35,14 +35,14 @@ function pruneItemSearchList () {
   found++
 
   var h = 10 + found * 18
-  $('#item-search, #item-search-detail').css({'height': h > 200 ? 200 : h})
+  $('#item-search, #item-search-detail').css({ 'height': h > 200 ? 200 : h })
 }
 
 function checkMobile () {
   mobile = /android.+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent || navigator.vendor || window.opera)
   if (mobile) {
-    $('#wrap').css({'margin': '0px'})
-    $('#content').css({'padding': '0px'})
+    $('#wrap').css({ 'margin': '0px' })
+    $('#content').css({ 'padding': '0px' })
   }
 }
 
@@ -51,7 +51,7 @@ function itemInfo (itemName) {
   var url = 'http://wiki.project1999.com/index.php/' + itemName
   $('#wiki-box-loading').show()
   $('#wiki-box iframe').hide()
-  $('#wiki-box iframe').attr({'src': url})
+  $('#wiki-box iframe').attr({ 'src': url })
   $('#wiki-box').show()
   setTimeout(function () {
     $('#wiki-box-loading').hide()
@@ -83,9 +83,10 @@ function findItems (target) {
 function searchP () {
   var regex = $('#item-search, #item-search-detail').val()
   var type = $('#search-type').val()
+  var server_color = $('#server-color').val()
 
   $.ajax({
-    url: '/action/eq/getItems/' + type + '/' + regex,
+    url: '/action/eq/getItems/' + type + '/' + regex + '?server-color=' + server_color,
     data: '',
     type: 'get',
     success: function (res) {
@@ -183,6 +184,11 @@ $(document).ready(function () {
   })
 
   $('#search-type').change(function () {
+    clearTimeout(filterTO)
+    filterTO = setTimeout(function () { searchP() }, 100)
+  })
+
+  $('#server-color').change(function () {
     clearTimeout(filterTO)
     filterTO = setTimeout(function () { searchP() }, 100)
   })

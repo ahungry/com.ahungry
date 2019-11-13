@@ -82,7 +82,7 @@
 
 (in-readtable :common-lisp)
 
-(defun build-like-clause (type regex)
+(defun build-like-clause (type regex server-color)
   "Given a type and a regex, build an appropriate LIKE statement"
   (let ((clause "%")) ;; start with something that will always work
     (when (member type '("wtb" "wts") :test #'string=)
@@ -117,7 +117,7 @@ in descending order, in a list."
   (let ((id-list (sort (mapcar #'parse-integer (split-sequence #\, ids)) #'>)))
     (subseq id-list 0 (min count (length id-list)))))
 
-(defun query-auctions-with-index (name &key type)
+(defun query-auctions-with-index (name &key type server-color)
   "Query via strict item names using our index lookup.  This ends up being
 faster than the cache option when querying many different name types at
 a frequent rate (similar to how the site is used)."
@@ -134,7 +134,7 @@ a frequent rate (similar to how the site is used)."
              (select :* (from :|eqAuction|)
                      (where
                       (:and (:in :id (take-ids (getf ids :ids)))
-                            (:like :listing (build-like-clause type name))))
+                            (:like :listing (build-like-clause type name server-color))))
                      (order-by (:desc :date))))
             (retrieve-all
              (select :* (from :|eqAuction|)
@@ -197,7 +197,7 @@ a frequent rate (similar to how the site is used)."
 ;; In spring, set to 4, in fall, set to 5.
 (defparameter *dst-offset* 4)
 
-(defun get-auctions (&key (limit 100) (type nil) (regex nil))
+(defun get-auctions (&key (limit 100) (type nil) (regex nil) (server-color nil))
   "Query the auctions and apply some additional fields to them"
   (let ((limit (if (stringp limit) (parse-integer limit) limit)))
     (ψ (remove-duplicates
@@ -205,7 +205,7 @@ a frequent rate (similar to how the site is used)."
             ;; Try to use the index, use the cache if not
             (append
              (query-auctions-with-cache :regex regex :type type)
-             (query-auctions-with-index regex :type type))
+             (query-auctions-with-index regex :type type :server-color server-color))
             ;; Unless we had no regex, then default to the cache
             (query-auctions-with-cache :limit limit
                                        :type type
