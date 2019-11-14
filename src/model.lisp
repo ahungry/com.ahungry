@@ -213,7 +213,7 @@ a frequent rate (similar to how the site is used)."
 
 ;; Daylight savings time can mess up our app, so, still, update twice a year.
 ;; In spring, set to 4, in fall, set to 5.
-(defparameter *dst-offset* 4)
+(defparameter *dst-offset* 5)
 
 (defun get-auctions (&key (limit 100) (type nil) (regex nil) (server-color nil))
   "Query the auctions and apply some additional fields to them"
