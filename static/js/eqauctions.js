@@ -86,7 +86,7 @@ function searchP () {
   var server_color = $('#server-color').val()
 
   $.ajax({
-    url: '/action/eq/getItems/' + type + '/' + regex + '?server-color=' + server_color,
+    url: '/action/eq/getItems/' + server_color + '/' + type + '/' + regex,
     data: '',
     type: 'get',
     success: function (res) {

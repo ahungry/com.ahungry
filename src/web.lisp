@@ -114,20 +114,20 @@
   (render #P"item-stub.tmpl"
           (list :item (list (get-item-loosely-by-name (car splat))))))
 
-(defroute "/action/eq/getItems/*/*" (&key splat)
-  (let ((auctions (get-auctions
-                   :limit 30
-                   :type (car splat)
-                   :server-color
-                   :regex (cadr splat))))
-    (render #P"auction-stub.tmpl"
-            (list :auctions auctions))))
+(defroute "/action/eq/getItems/:server-color/:type/:regex" (&key server-color type regex)
+ (let ((auctions (get-auctions
+                  :limit 30
+                  :type type
+                  :server-color server-color
+                  :regex regex)))
+   (render #P"auction-stub.tmpl"
+           (list :auctions auctions))))
 
-(defroute "/action/eq/getItems/*" (&key splat)
+(defroute "/action/eq/getItems/:server-color/:type" (&key server-color type)
   (let ((auctions (get-auctions
                    :limit 100
-                   :type (car splat)
-
+                   :type type
+                   :server-color server-color
                    :regex nil)))
     (render #P"auction-stub.tmpl"
             (list :auctions auctions))))

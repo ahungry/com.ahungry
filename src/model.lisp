@@ -82,7 +82,7 @@
 
 (in-readtable :common-lisp)
 
-(defun build-like-clause (type regex server-color)
+(defun build-like-clause (type regex)
   "Given a type and a regex, build an appropriate LIKE statement"
   (let ((clause "%")) ;; start with something that will always work
     (when (member type '("wtb" "wts") :test #'string=)
@@ -93,7 +93,7 @@
 
 (defparameter *query-auctions-cache* (make-hash-table :test #'equal))
 
-(defun query-auctions-with-cache (&key (limit 100) (type nil) (regex nil))
+(defun query-auctions-with-cache (&key (limit 100) (type nil) (regex nil) (server-color nil))
   "Provide a fast way to query out repeat queries and avoid the DB"
   (let ((epoch (or (gethash "epoch" *query-auctions-cache*) 0)))
     (when (> (- (get-universal-time) epoch) 60)
@@ -103,7 +103,7 @@
                       (make-hash-table :test #'equal)))
            (value (gethash regex table)))
       (if value value
-          (let ((value (query-auctions :limit limit :type type :regex regex)))
+          (let ((value (query-auctions :limit limit :type type :regex regex :server-color server-color)))
             (setf (gethash regex table) value
                   (gethash type *query-auctions-cache*) table)
             value)))))
@@ -116,6 +116,13 @@
 in descending order, in a list."
   (let ((id-list (sort (mapcar #'parse-integer (split-sequence #\, ids)) #'>)))
     (subseq id-list 0 (min count (length id-list)))))
+
+(defun get-server-color (s)
+  "Turn a server color into one that matches our db values.
+The database should only ever have the values 'green', 'blue', or 'teal'."
+  (if s
+      (string-downcase s)
+      "blue"))
 
 (defun query-auctions-with-index (name &key type server-color)
   "Query via strict item names using our index lookup.  This ends up being
@@ -134,11 +141,15 @@ a frequent rate (similar to how the site is used)."
              (select :* (from :|eqAuction|)
                      (where
                       (:and (:in :id (take-ids (getf ids :ids)))
-                            (:like :listing (build-like-clause type name server-color))))
+                            (:= :server (get-server-color server-color))
+                            (:like :listing (build-like-clause type name))))
                      (order-by (:desc :date))))
             (retrieve-all
              (select :* (from :|eqAuction|)
-                     (where (:in :id (take-ids (getf ids :ids))))
+                     (where
+                      (:and
+                       (:= :server (get-server-color server-color))
+                       (:in :id (take-ids (getf ids :ids)))))
                      (order-by (:desc :date)))))))))
 
 (defun yyyy-mm-dd (ut)
@@ -147,7 +158,7 @@ a frequent rate (similar to how the site is used)."
       (universal-to-timestamp ut)
     (format nil "~a-~2,'0d-~2,'0d" y m d)))
 
-(defun query-auctions (&key (limit 100) (type nil) (regex nil) (max-days 2))
+(defun query-auctions (&key (limit 100) (type nil) (regex nil) (max-days 2) (server-color nil))
   "Pull out the listings, limit is the total to show"
   (with-connection (db)
     (let ((clause (build-like-clause type regex)))
@@ -157,12 +168,14 @@ a frequent rate (similar to how the site is used)."
              (from :|eqAuction|)
              (where
               (:and (:like :listing clause)
+                    (:= :server (get-server-color server-color))
                     (:> :date (yyyy-mm-dd (- (get-universal-time) (* 60 60 24 max-days))))))
              (order-by (:desc :date))
              (limit limit)))
           (retrieve-all
            (select :*
              (from :|eqAuction|)
+             (where (:= :server (get-server-color server-color)))
              (order-by (:desc :date))
              (limit limit)))))))
 
@@ -204,11 +217,12 @@ a frequent rate (similar to how the site is used)."
         (if regex
             ;; Try to use the index, use the cache if not
             (append
-             (query-auctions-with-cache :regex regex :type type)
+             (query-auctions-with-cache :regex regex :type type :server-color server-color)
              (query-auctions-with-index regex :type type :server-color server-color))
             ;; Unless we had no regex, then default to the cache
             (query-auctions-with-cache :limit limit
                                        :type type
+                                       :server-color server-color
                                        :regex regex))
         :test #'string= :key (lambda (r) (getf r :listing)))
        α → (append

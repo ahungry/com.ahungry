@@ -1,0 +1,6 @@
+:url = http://localhost:5000
+
+GET :url/action/eq/getItems/either/x/foo
+Content-Type: text/plain
+Accept: */*
+#
