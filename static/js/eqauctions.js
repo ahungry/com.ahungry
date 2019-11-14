@@ -83,7 +83,7 @@ function findItems (target) {
 function searchP () {
   var regex = $('#item-search, #item-search-detail').val()
   var type = $('#search-type').val()
-  var server_color = $('#server-color').val()
+  var server_color = $('#server-color').val() || 'blue'
 
   $.ajax({
     url: '/action/eq/getItems/' + server_color + '/' + type + '/' + regex,

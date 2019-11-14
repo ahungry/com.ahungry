@@ -93,6 +93,10 @@
 
 (defparameter *query-auctions-cache* (make-hash-table :test #'equal))
 
+(defun make-cache-key (regex server-color)
+  "Create a unique enough cache key reference."
+  (format nil "~a-~a" server-color regex))
+
 (defun query-auctions-with-cache (&key (limit 100) (type nil) (regex nil) (server-color nil))
   "Provide a fast way to query out repeat queries and avoid the DB"
   (let ((epoch (or (gethash "epoch" *query-auctions-cache*) 0)))
@@ -101,10 +105,11 @@
             (gethash "epoch" *query-auctions-cache*) (get-universal-time)))
     (let* ((table (or (gethash type *query-auctions-cache*)
                       (make-hash-table :test #'equal)))
-           (value (gethash regex table)))
+           (key (make-cache-key regex server-color))
+           (value (gethash key table)))
       (if value value
           (let ((value (query-auctions :limit limit :type type :regex regex :server-color server-color)))
-            (setf (gethash regex table) value
+            (setf (gethash key table) value
                   (gethash type *query-auctions-cache*) table)
             value)))))
 
