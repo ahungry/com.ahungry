@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-10-02 Wed 00:37 -->
+<!-- 2020-02-01 Sat 14:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Matthew Carter's Projects and Tinkerings</title>
@@ -180,6 +180,12 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
+<link rel="stylesheet" type="text/css" href="styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="styles/readtheorg/js/readtheorg.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -234,55 +240,45 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0622326">Preamble</a></li>
-<li><a href="#orga19fe7a">Websites</a>
+<li><a href="#orgb848552">Preamble</a></li>
+<li><a href="#org7c52de5">Websites</a>
 <ul>
-<li><a href="#org34df76a">Ahungry Dot Com&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></a></li>
-<li><a href="#org6549c9e">Sluglisp / Slugelisp / Slugclojure&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></a></li>
-<li><a href="#org83f9f64">Langpop&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></a></li>
+<li><a href="#org22a4ce8">Ahungry Dot Com&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></a></li>
+<li><a href="#org116e6ad">Sluglisp / Slugelisp / Slugclojure&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></a></li>
+<li><a href="#orgf7e6d86">Langpop&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></a></li>
 </ul>
 </li>
-<li><a href="#orge3db8a1">Games</a>
+<li><a href="#org7469033">Games</a>
 <ul>
-<li><a href="#orgafa123b">Magic Shield Attack&#xa0;&#xa0;&#xa0;<span class="tag"><span class="clojure">clojure</span>&#xa0;<span class="godot">godot</span></span></a></li>
-<li><a href="#org2cc959a">Pseudo&#xa0;&#xa0;&#xa0;<span class="tag"><span class="javascript">javascript</span>&#xa0;<span class="commonlisp">commonlisp</span></span></a></li>
-<li><a href="#orgdbd6957">Ahungry Tactics&#xa0;&#xa0;&#xa0;<span class="tag"><span class="javascript">javascript</span></span></a></li>
+<li><a href="#org6d53476">Magic Shield Attack&#xa0;&#xa0;&#xa0;<span class="tag"><span class="clojure">clojure</span>&#xa0;<span class="godot">godot</span></span></a></li>
+<li><a href="#org7d1e203">Pseudo&#xa0;&#xa0;&#xa0;<span class="tag"><span class="javascript">javascript</span>&#xa0;<span class="commonlisp">commonlisp</span></span></a></li>
+<li><a href="#orgfc5bf3e">Ahungry Tactics&#xa0;&#xa0;&#xa0;<span class="tag"><span class="javascript">javascript</span></span></a></li>
 </ul>
 </li>
-<li><a href="#orgb494d37">Emacs Lisp Packages&#xa0;&#xa0;&#xa0;<span class="tag"><span class="emacs">emacs</span></span></a>
+<li><a href="#orgf4a3692">Emacs Lisp Packages&#xa0;&#xa0;&#xa0;<span class="tag"><span class="emacs">emacs</span></span></a>
 <ul>
-<li><a href="#org7502d5d">Color Theme Ahungry&#xa0;&#xa0;&#xa0;<span class="tag"><span class="themes">themes</span>&#xa0;<span class="elisp">elisp</span></span></a></li>
-<li><a href="#org397d13f">Org Jira&#xa0;&#xa0;&#xa0;<span class="tag"><span class="jira">jira</span>&#xa0;<span class="elisp">elisp</span></span></a></li>
-<li><a href="#orgd3c920d">md4rd (mode for reddit, aka reddit-mode)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="elisp">elisp</span>&#xa0;<span class="reddit">reddit</span></span></a></li>
+<li><a href="#orge81e043">Color Theme Ahungry&#xa0;&#xa0;&#xa0;<span class="tag"><span class="themes">themes</span>&#xa0;<span class="elisp">elisp</span></span></a></li>
+<li><a href="#org9ccc57b">Org Jira&#xa0;&#xa0;&#xa0;<span class="tag"><span class="jira">jira</span>&#xa0;<span class="elisp">elisp</span></span></a></li>
+<li><a href="#orgb42c36e">md4rd (mode for reddit, aka reddit-mode)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="elisp">elisp</span>&#xa0;<span class="reddit">reddit</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org9000b18">Conclusion</a></li>
-<li><a href="#orgd0c3a85">Comments</a></li>
+<li><a href="#org791fad3">Conclusion</a></li>
+<li><a href="#orgf2b7494">Changelog</a>
+<ul>
+<li><a href="#orgd34f72a"><span class="timestamp-wrapper"><span class="timestamp">&lt;2020-02-01 Sat&gt;</span></span></a></li>
+</ul>
+</li>
+<li><a href="#orgf2d43da">Comments</a></li>
 </ul>
 </div>
 </div>
-<p>
-<b>HINT</b>: You can press 'n' and 'p' keys to navigate around quickly and
-read this as if it were a chapter book.  Alternatively, click in the
-top right corner to see it as a giant HTML document with folding, or
-just disable javascript if you'd prefer to see it as a massive in-line
-file.
-</p>
-
-<p>
-<b>BONUS HINT</b>: If you want to read about some particular subject, press
-'C' for a tags index (I tend to tag by programming language, or
-'thing').  You can use '?' to see more shortcuts, or click any HELP
-button.
-</p>
-
 <p>
 Back to main site: <a href="http://ahungry.com">http://ahungry.com</a>
 </p>
 
-<div id="outline-container-org0622326" class="outline-2">
-<h2 id="org0622326">Preamble</h2>
-<div class="outline-text-2" id="text-org0622326">
+<div id="outline-container-orgb848552" class="outline-2">
+<h2 id="orgb848552">Preamble</h2>
+<div class="outline-text-2" id="text-orgb848552">
 <p>
 Within this page, you will find some of the various projects that I've
 been working on / have worked on etc. with some thoughts and musings
@@ -291,17 +287,17 @@ on each.
 </div>
 </div>
 
-<div id="outline-container-orga19fe7a" class="outline-2">
-<h2 id="orga19fe7a">Websites</h2>
-<div class="outline-text-2" id="text-orga19fe7a">
+<div id="outline-container-org7c52de5" class="outline-2">
+<h2 id="org7c52de5">Websites</h2>
+<div class="outline-text-2" id="text-org7c52de5">
 <p>
 Making websites is essentially where I began my programming career
 (more or less), so it's where I'll begin this list.
 </p>
 </div>
-<div id="outline-container-org34df76a" class="outline-3">
-<h3 id="org34df76a">Ahungry Dot Com&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></h3>
-<div class="outline-text-3" id="text-org34df76a">
+<div id="outline-container-org22a4ce8" class="outline-3">
+<h3 id="org22a4ce8">Ahungry Dot Com&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></h3>
+<div class="outline-text-3" id="text-org22a4ce8">
 <p>
 Site: <a href="http://ahungry.com">http://ahungry.com</a>
 </p>
@@ -352,9 +348,9 @@ The project is licensed AGPLv3 or later.
 </p>
 </div>
 </div>
-<div id="outline-container-org6549c9e" class="outline-3">
-<h3 id="org6549c9e">Sluglisp / Slugelisp / Slugclojure&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></h3>
-<div class="outline-text-3" id="text-org6549c9e">
+<div id="outline-container-org116e6ad" class="outline-3">
+<h3 id="org116e6ad">Sluglisp / Slugelisp / Slugclojure&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></h3>
+<div class="outline-text-3" id="text-org116e6ad">
 <p>
 Sites:
 </p>
@@ -397,9 +393,9 @@ The projects are all licensed AGPLv3 or later.
 </p>
 </div>
 </div>
-<div id="outline-container-org83f9f64" class="outline-3">
-<h3 id="org83f9f64">Langpop&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></h3>
-<div class="outline-text-3" id="text-org83f9f64">
+<div id="outline-container-orgf7e6d86" class="outline-3">
+<h3 id="orgf7e6d86">Langpop&#xa0;&#xa0;&#xa0;<span class="tag"><span class="commonlisp">commonlisp</span></span></h3>
+<div class="outline-text-3" id="text-orgf7e6d86">
 <p>
 Site: <a href="http://lang-pop.ahungry.com">http://lang-pop.ahungry.com</a>
 </p>
@@ -430,9 +426,9 @@ License: AGPLv3 or later.
 </div>
 </div>
 </div>
-<div id="outline-container-orge3db8a1" class="outline-2">
-<h2 id="orge3db8a1">Games</h2>
-<div class="outline-text-2" id="text-orge3db8a1">
+<div id="outline-container-org7469033" class="outline-2">
+<h2 id="org7469033">Games</h2>
+<div class="outline-text-2" id="text-org7469033">
 <p>
 In addition to websites, I have tinkered with a variety of games, from
 web based games that cover a wide spectrum of implementations
@@ -441,9 +437,9 @@ based native desktop games, to portable framework Godot
 (<a href="https://godotengine.org/">https://godotengine.org/</a>) games that run on webgl, android, and native.
 </p>
 </div>
-<div id="outline-container-orgafa123b" class="outline-3">
-<h3 id="orgafa123b">Magic Shield Attack&#xa0;&#xa0;&#xa0;<span class="tag"><span class="clojure">clojure</span>&#xa0;<span class="godot">godot</span></span></h3>
-<div class="outline-text-3" id="text-orgafa123b">
+<div id="outline-container-org6d53476" class="outline-3">
+<h3 id="org6d53476">Magic Shield Attack&#xa0;&#xa0;&#xa0;<span class="tag"><span class="clojure">clojure</span>&#xa0;<span class="godot">godot</span></span></h3>
+<div class="outline-text-3" id="text-org6d53476">
 <p>
 Site: <a href="http://magicshieldattack.com">http://magicshieldattack.com</a> (playable at link)
 </p>
@@ -484,9 +480,9 @@ License: AGPLv3
 </p>
 </div>
 </div>
-<div id="outline-container-org2cc959a" class="outline-3">
-<h3 id="org2cc959a">Pseudo&#xa0;&#xa0;&#xa0;<span class="tag"><span class="javascript">javascript</span>&#xa0;<span class="commonlisp">commonlisp</span></span></h3>
-<div class="outline-text-3" id="text-org2cc959a">
+<div id="outline-container-org7d1e203" class="outline-3">
+<h3 id="org7d1e203">Pseudo&#xa0;&#xa0;&#xa0;<span class="tag"><span class="javascript">javascript</span>&#xa0;<span class="commonlisp">commonlisp</span></span></h3>
+<div class="outline-text-3" id="text-org7d1e203">
 <p>
 Site: <a href="http://pseudo.ahungry.com">http://pseudo.ahungry.com</a> (playable at link)
 </p>
@@ -522,9 +518,9 @@ License: AGPLv3
 </p>
 </div>
 </div>
-<div id="outline-container-orgdbd6957" class="outline-3">
-<h3 id="orgdbd6957">Ahungry Tactics&#xa0;&#xa0;&#xa0;<span class="tag"><span class="javascript">javascript</span></span></h3>
-<div class="outline-text-3" id="text-orgdbd6957">
+<div id="outline-container-orgfc5bf3e" class="outline-3">
+<h3 id="orgfc5bf3e">Ahungry Tactics&#xa0;&#xa0;&#xa0;<span class="tag"><span class="javascript">javascript</span></span></h3>
+<div class="outline-text-3" id="text-orgfc5bf3e">
 <p>
 Site: <a href="http://tactics.ahungry.com">http://tactics.ahungry.com</a>
 </p>
@@ -554,9 +550,9 @@ License: APGLv3
 </div>
 </div>
 </div>
-<div id="outline-container-orgb494d37" class="outline-2">
-<h2 id="orgb494d37">Emacs Lisp Packages&#xa0;&#xa0;&#xa0;<span class="tag"><span class="emacs">emacs</span></span></h2>
-<div class="outline-text-2" id="text-orgb494d37">
+<div id="outline-container-orgf4a3692" class="outline-2">
+<h2 id="orgf4a3692">Emacs Lisp Packages&#xa0;&#xa0;&#xa0;<span class="tag"><span class="emacs">emacs</span></span></h2>
+<div class="outline-text-2" id="text-orgf4a3692">
 <p>
 I enjoy using Emacs, and I also enjoy extending it (and sharing the
 extensions with the world).
@@ -588,9 +584,9 @@ is a blocking point for getting the code accepted).
 </p>
 </div>
 
-<div id="outline-container-org7502d5d" class="outline-3">
-<h3 id="org7502d5d">Color Theme Ahungry&#xa0;&#xa0;&#xa0;<span class="tag"><span class="themes">themes</span>&#xa0;<span class="elisp">elisp</span></span></h3>
-<div class="outline-text-3" id="text-org7502d5d">
+<div id="outline-container-orge81e043" class="outline-3">
+<h3 id="orge81e043">Color Theme Ahungry&#xa0;&#xa0;&#xa0;<span class="tag"><span class="themes">themes</span>&#xa0;<span class="elisp">elisp</span></span></h3>
+<div class="outline-text-3" id="text-orge81e043">
 <p>
 Source: <a href="https://github.com/ahungry/color-theme-ahungry">https://github.com/ahungry/color-theme-ahungry</a>
 </p>
@@ -628,9 +624,9 @@ License: GPLv3
 </p>
 </div>
 </div>
-<div id="outline-container-org397d13f" class="outline-3">
-<h3 id="org397d13f">Org Jira&#xa0;&#xa0;&#xa0;<span class="tag"><span class="jira">jira</span>&#xa0;<span class="elisp">elisp</span></span></h3>
-<div class="outline-text-3" id="text-org397d13f">
+<div id="outline-container-org9ccc57b" class="outline-3">
+<h3 id="org9ccc57b">Org Jira&#xa0;&#xa0;&#xa0;<span class="tag"><span class="jira">jira</span>&#xa0;<span class="elisp">elisp</span></span></h3>
+<div class="outline-text-3" id="text-org9ccc57b">
 <p>
 Source: <a href="https://github.com/ahungry/org-jira">https://github.com/ahungry/org-jira</a>
 </p>
@@ -673,9 +669,9 @@ License: GPLv3
 </p>
 </div>
 </div>
-<div id="outline-container-orgd3c920d" class="outline-3">
-<h3 id="orgd3c920d">md4rd (mode for reddit, aka reddit-mode)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="elisp">elisp</span>&#xa0;<span class="reddit">reddit</span></span></h3>
-<div class="outline-text-3" id="text-orgd3c920d">
+<div id="outline-container-orgb42c36e" class="outline-3">
+<h3 id="orgb42c36e">md4rd (mode for reddit, aka reddit-mode)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="elisp">elisp</span>&#xa0;<span class="reddit">reddit</span></span></h3>
+<div class="outline-text-3" id="text-orgb42c36e">
 <p>
 Source: <a href="https://github.com/ahungry/md4rd">https://github.com/ahungry/md4rd</a>
 </p>
@@ -705,10 +701,9 @@ comments.
 </div>
 </div>
 
-
-<div id="outline-container-org9000b18" class="outline-2">
-<h2 id="org9000b18">Conclusion</h2>
-<div class="outline-text-2" id="text-org9000b18">
+<div id="outline-container-org791fad3" class="outline-2">
+<h2 id="org791fad3">Conclusion</h2>
+<div class="outline-text-2" id="text-org791fad3">
 <p>
 If you think anything here looks particularly interesting, or just
 want to chat / mention / request something of me, feel free to drop me
@@ -718,9 +713,24 @@ a line at m@ahungry.com, or ping me on twitter at
 </div>
 </div>
 
-<div id="outline-container-orgd0c3a85" class="outline-2">
-<h2 id="orgd0c3a85">Comments</h2>
-<div class="outline-text-2" id="text-orgd0c3a85">
+<div id="outline-container-orgf2b7494" class="outline-2">
+<h2 id="orgf2b7494">Changelog</h2>
+<div class="outline-text-2" id="text-orgf2b7494">
+</div>
+<div id="outline-container-orgd34f72a" class="outline-3">
+<h3 id="orgd34f72a"><span class="timestamp-wrapper"><span class="timestamp">&lt;2020-02-01 Sat&gt;</span></span></h3>
+<div class="outline-text-3" id="text-orgd34f72a">
+<ul class="org-ul">
+<li>Added a new theme from org-html-themes (<a href="https://github.com/fniessen/org-html-themes">https://github.com/fniessen/org-html-themes</a>)</li>
+<li>Slightly adjusted the theme</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf2d43da" class="outline-2">
+<h2 id="orgf2d43da">Comments</h2>
+<div class="outline-text-2" id="text-orgf2d43da">
 <iframe frameborder="0"
   height="500"
   width="800"
@@ -734,26 +744,13 @@ fin.
 
 <link href="projects.css" rel="stylesheet" type="text/css" />
 <script src="projects.js"></script>
-<script src="org-info.js"></script>
-<script>
-org_html_manager.set("TOC_DEPTH", "2");
-org_html_manager.set("LINK_HOME", "");
-org_html_manager.set("LINK_UP", "");
-org_html_manager.set("LOCAL_TOC", "0");
-org_html_manager.set("VIEW_BUTTONS", "0");
-org_html_manager.set("MOUSE_HINT", "underline");
-org_html_manager.set("FIXED_TOC", "0");
-org_html_manager.set("TOC", "1");
-org_html_manager.set("VIEW", "info");
-org_html_manager.setup();  // activate after the parameters are set
-</script>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matthew Carter</p>
 <p class="email">Email: <a href="mailto:m@ahungry.com">m@ahungry.com</a></p>
-<p class="date">Created: 2019-10-02 Wed 00:37</p>
+<p class="date">Created: 2020-02-01 Sat 14:01</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

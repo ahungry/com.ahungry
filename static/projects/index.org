@@ -1,3 +1,4 @@
+#+SETUPFILE: ./theme-readtheorg-local.setup
 #+STARTUP: showall indent
 #+STARTUP: hidestars
 #+XINFOJS_OPT: view:info toc:t ltoc:nil
@@ -6,17 +7,6 @@
 #+CREATOR: Matthew Carter
 #+EMAIL: m@ahungry.com
 #+TITLE: Matthew Carter's Projects and Tinkerings
-
-*HINT*: You can press 'n' and 'p' keys to navigate around quickly and
-read this as if it were a chapter book.  Alternatively, click in the
-top right corner to see it as a giant HTML document with folding, or
-just disable javascript if you'd prefer to see it as a massive in-line
-file.
-
-*BONUS HINT*: If you want to read about some particular subject, press
-'C' for a tags index (I tend to tag by programming language, or
-'thing').  You can use '?' to see more shortcuts, or click any HELP
-button.
 
 Back to main site: http://ahungry.com
 
@@ -256,12 +246,17 @@ It allows Oauth level sign in, which will permit the user to
 upvote/downvote/post comments on a main subject, or on another user's
 comments.
 
-
 * Conclusion
 If you think anything here looks particularly interesting, or just
 want to chat / mention / request something of me, feel free to drop me
 a line at m@ahungry.com, or ping me on twitter at
 https://twitter.com/_ahungry, or leave a comment below.
+
+* Changelog
+
+** <2020-02-01 Sat>
+- Added a new theme from org-html-themes (https://github.com/fniessen/org-html-themes)
+- Slightly adjusted the theme
 
 * Comments
 #+BEGIN_EXPORT html
@@ -278,17 +273,4 @@ fin.
 #+BEGIN_EXPORT html
 <link href="projects.css" rel="stylesheet" type="text/css" />
 <script src="projects.js"></script>
-<script src="org-info.js"></script>
-<script>
-org_html_manager.set("TOC_DEPTH", "2");
-org_html_manager.set("LINK_HOME", "");
-org_html_manager.set("LINK_UP", "");
-org_html_manager.set("LOCAL_TOC", "0");
-org_html_manager.set("VIEW_BUTTONS", "0");
-org_html_manager.set("MOUSE_HINT", "underline");
-org_html_manager.set("FIXED_TOC", "0");
-org_html_manager.set("TOC", "1");
-org_html_manager.set("VIEW", "info");
-org_html_manager.setup();  // activate after the parameters are set
-</script>
 #+END_EXPORT

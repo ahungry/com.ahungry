@@ -5,78 +5,40 @@
   src: url("iosevka-term-regular.woff") format("woff");
 }
 
-
-html {
-  background:#fff;
-  color:#333;
-  font-family: sans-serif, serif;
-  font-size: 0.9rem;
-  padding-bottom: 100px;
+html, body {
 }
 
-body {
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-pre {
-  border: 2px solid red;
-  color:#fff !important;
-}
-
-pre span {
-  background:transparent !important;
-}
-
-ul {
-}
-
-ul li {
-}
-
-h2 {
-}
-a {
-}
-a:hover {
-  background: #fa0;
-}
-.src {
+pre.src {
   line-stroke: bold;
   border: 2px solid red;
-  background:#111;
+  background:#333;
   border:1px solid #999;
   border-radius:3px;
   color:#fff;
   overflow-y:scroll;
   padding:10px;
   font-family: Iosevka;
+  max-width:800px;
 }
 
-img {
-  max-width: 100%;
+.tag {
+  display: none;
 }
 
-/* If width is less than 600 do this stuff */
-@media (max-width: 600px)
-{
-  html {
-  }
-  body {
-    margin-left: 2%;
-    margin-right: 2%;
-  }
-  img {
-    max-width: 100%;
-  }
+#content {
+  max-width:1800px;
 }
 
-#change-lang {
-  background: rgba(0, 0, 0, .95);
-  bottom: 0;
-  color: #fff;
-  left: 0;
-  padding: 10px;
-  position: fixed;
-  width: 100%;
+p {
+  max-width:800px;
+  text-align: justify;
+}
+
+li {
+  max-width:800px;
+}
+
+#table-of-contents a:hover {
+  background: #036 !important;
+  color: #af0 !important;
 }
