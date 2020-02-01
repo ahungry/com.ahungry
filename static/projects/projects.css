@@ -27,11 +27,11 @@ pre.src {
 
 #content {
   max-width:1800px;
+  padding: 1em;
 }
 
 p {
   max-width:800px;
-  text-align: justify;
 }
 
 li {
@@ -41,4 +41,24 @@ li {
 #table-of-contents a:hover {
   background: #036 !important;
   color: #af0 !important;
+}
+
+/* For the comments iframe */
+#comments-frame {
+  height: auto;
+  width: 800px;
+}
+
+@media (max-width: 600px)
+{
+  #comments-frame {
+    width: 600px;
+  }
+}
+
+@media (max-width: 300px)
+{
+  #comments-frame {
+    width: 300px;
+  }
 }

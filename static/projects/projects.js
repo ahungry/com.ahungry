@@ -75,3 +75,11 @@
 // }
 
 // console.log('fin')
+window.onload = () => {
+  // Auto size comment box
+  const rw = document.getElementById('content').offsetWidth
+  const w = Math.floor(0.8 * rw)
+  const el = document.getElementById('comments-frame')
+  el.width = w
+  el.src = 'https://comments.ahungry.com/?w=' + (w)
+}

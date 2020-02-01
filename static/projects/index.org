@@ -262,10 +262,8 @@ https://twitter.com/_ahungry, or leave a comment below.
 #+BEGIN_EXPORT html
 <iframe frameborder="0"
   height="500"
-  width="800"
   id="comments-frame"
-  style="width:800px;height:auto;"
-  src="https://comments.ahungry.com/?w=500"></iframe>
+  ></iframe>
 <script src="https://comments.ahungry.com/iframe.js"></script>
 #+END_EXPORT
 fin.
