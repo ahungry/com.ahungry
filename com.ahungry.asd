@@ -30,7 +30,7 @@
   :components ((
                 :module "src"
                 :components
-                ((:file "main" :depends-on ("config" "view" "db"))
+                ((:file "main" :depends-on ("config" "view" "db" "model"))
                  (:file "web" :depends-on ("view" "model" "javascript"))
                  (:file "javascript" :depends-on ("config"))
                  (:file "model" :depends-on ("config"))

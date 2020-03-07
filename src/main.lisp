@@ -1,6 +1,7 @@
 (in-package :cl-user)
 (defpackage com.ahungry
-  (:use :cl)
+  (:use :cl
+        :com.ahungry.model)
   (:import-from :com.ahungry.config
                 :config)
   (:import-from :clack
@@ -21,6 +22,7 @@
       (restart-server ()
         :report "Restart the server"
         (stop))))
+  (com.ahungry.model:populate-pages)
   (setf *handler*
         (apply #'clackup *appfile-path* args)))
 

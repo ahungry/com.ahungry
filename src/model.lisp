@@ -21,6 +21,7 @@
    :get-ad
    :populate-eq-item-index
    :populate-all-eq-items
+   :populate-pages
    :price-all-eq-items
    ))
 (in-package :com.ahungry.model)
@@ -51,8 +52,6 @@
           (retrieve-all
            (select :title
              (from :page))))))
-
-(populate-pages)
 
 (ƒ first-nest
    ~"(.*?)/.*"~ → |"\\1"|

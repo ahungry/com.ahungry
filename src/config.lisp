@@ -20,7 +20,9 @@
 (defparameter *template-directory* (merge-pathnames #P"templates/" *application-root*))
 
 (defparameter *env-based-database-info*
-  (list (list :maindb :mysql :database-name "ahungry"
+  (list (list :maindb :mysql
+              :database-name "ahungry"
+              :host (or (sb-ext:posix-getenv "MYSQL_AHUNGRY_HOST") "0.0.0.0")
               :username (or (sb-ext:posix-getenv "MYSQL_AHUNGRY_USERNAME") "ahungry")
               :password (or (sb-ext:posix-getenv "MYSQL_AHUNGRY_PASSWORD") "ahungry"))))
 

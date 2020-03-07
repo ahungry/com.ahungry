@@ -1,10 +1,7 @@
 # -*- mode: dockerfile -*-
 FROM ahungry/sbcl
 
-RUN yes | pacman -Sy libyaml mariadb mariadb-clients mariadb-libs libuv
-
-RUN systemctl enable mariadb
-RUN systemctl start mariadb
+RUN yes | pacman -Sy libyaml mariadb-libs libuv
 
 WORKDIR /app
 COPY . /app/com.ahungry

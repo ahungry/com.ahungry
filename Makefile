@@ -3,6 +3,7 @@ build:
 
 start:
 	docker run \
+	--env-file=.env \
 	--security-opt seccomp=unconfined \
 	--rm \
 	-it \
