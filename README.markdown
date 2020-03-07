@@ -10,6 +10,14 @@ Make sure to install SBCL (Steel Bank Common Lisp) and setup Quicklisp
 
 ## Usage
 
+### Docker
+
+```sh
+make build && make start
+```
+
+### Native
+
 Clone the repository, then quickload and run it with:
 
 ```lisp
@@ -27,7 +35,7 @@ Now just visit http://localhost:5000 in your browser, and voila!
 
 ## Copyright
 
-Copyright (c) 2014-2016 Matthew Carter <m@ahungry.com>
+Copyright (c) 2014-2020 Matthew Carter <m@ahungry.com>
 
 # License
 
