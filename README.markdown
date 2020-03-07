@@ -8,6 +8,14 @@ located at http://ahungry.com
 Make sure to install SBCL (Steel Bank Common Lisp) and setup Quicklisp
 (search for instructions if you don't know about it).
 
+## Dependencies
+
+The underlying Quicklisp libs used for sure require the following:
+
+- libyaml
+- mariadb-libs
+- libuv
+
 ## Usage
 
 ### Docker
