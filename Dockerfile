@@ -9,5 +9,6 @@ COPY . /app/com.ahungry
 
 # In build, load the system so its dependencies are cached.
 RUN su -c '/bin/sbcl --load /app/com.ahungry/docker-build.lisp' dummy
+RUN /bin/sbcl --load /app/com.ahungry/docker-build.lisp
 
 CMD ["/bin/sbcl", "--load", "/app/com.ahungry/docker-boot.lisp"]
