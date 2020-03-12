@@ -1,5 +1,5 @@
 # -*- mode: dockerfile -*-
-FROM ahungry/sbcl
+FROM ahungry/sbcl:latest
 
 RUN yes | pacman -Sy libyaml mariadb-libs libuv
 
