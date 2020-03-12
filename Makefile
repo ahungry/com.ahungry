@@ -1,7 +1,7 @@
 build:
 	docker build -t ahungry/com.ahungry .
 
-start:
+run:
 	docker run \
 	--env-file=.env \
 	--security-opt seccomp=unconfined \

@@ -4,4 +4,4 @@
 
 (ql:quickload :com.ahungry)
 
-(com.ahungry:start)
+(com.ahungry:start :server :woo)

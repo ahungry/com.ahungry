@@ -1,7 +1,7 @@
 # -*- mode: dockerfile -*-
 FROM ahungry/sbcl:latest
 
-RUN yes | pacman -Sy libyaml mariadb-libs libuv
+RUN yes | pacman -Sy libyaml mariadb-libs libuv libev
 
 WORKDIR /app
 
