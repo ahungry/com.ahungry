@@ -22,7 +22,6 @@
       (restart-server ()
         :report "Restart the server"
         (stop))))
-  (com.ahungry.model:populate-pages)
   (setf *handler*
         (apply #'clackup *appfile-path* args)))
 

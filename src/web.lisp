@@ -32,7 +32,12 @@
 ;;:port 54321
 ;;:server-name (or (sb-ext:posix-getenv "COM_AHUNGRY_SERVER_NAME") "localhost"))
 
+(defroute "/version" ()
+  (setf (getf (response-headers *response*) :content-type) "application/json")
+  "\"0.0.1\"")
+
 (defroute "/" ()
+  (com.ahungry.model:populate-pages)
   (let ((cms-content (get-page-content "/")))
     (with-layout (:title "Welcome to Ahungry"
                          ;;:defjs (defjs:get-loader)

@@ -43,15 +43,16 @@
 ;; Pull out a nicely formatted price
 (ƒ price-parse (price-extract α αb) → (strip-non-numbers (expand-ks (price-extract α αb))))
 
-(defparameter *pages* '((:title "Nothing...")))
+(defparameter *pages* nil)
 
 (defun populate-pages ()
   "Set up the various site links - called once in web"
-  (setf *pages*
-        (with-connection (db)
-          (retrieve-all
-           (select :title
-             (from :page))))))
+  (unless *pages*
+    (setf *pages*
+          (with-connection (db)
+            (retrieve-all
+             (select :title
+                     (from :page)))))))
 
 (ƒ first-nest
    ~"(.*?)/.*"~ → |"\\1"|
