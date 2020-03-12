@@ -11,4 +11,13 @@ COPY . /app/com.ahungry
 RUN su -c '/bin/sbcl --load /app/com.ahungry/docker-build.lisp' dummy
 RUN /bin/sbcl --load /app/com.ahungry/docker-build.lisp
 
-CMD ["/bin/sbcl", "--load", "/app/com.ahungry/docker-boot.lisp"]
+
+#CMD ["/bin/sbcl", "--load", "/app/com.ahungry/docker-boot.lisp"]
+RUN yes | pacman -Sy nginx
+
+COPY ./nginx.conf /etc/nginx
+COPY ./boot.sh /app
+
+RUN chmod +x /app/boot.sh
+
+CMD /app/boot.sh

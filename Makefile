@@ -7,5 +7,5 @@ start:
 	--security-opt seccomp=unconfined \
 	--rm \
 	-it \
-	-u $(shell id -u) \
+	-p 5001:80 \
 	ahungry/com.ahungry
