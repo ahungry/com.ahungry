@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-04-09 Thu 00:50 -->
+<!-- 2020-04-09 Thu 01:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -233,123 +233,197 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7c24c74">1. Hello World</a></li>
-<li><a href="#org3b73fc8">2. Function to add two numbers</a></li>
-<li><a href="#org8bee5ce">3. Reading a file</a></li>
-<li><a href="#org0594d0e">4. Sum of all numbers from 0 to 9</a></li>
-<li><a href="#orgdab4e9f">5. End</a></li>
+<li><a href="#orgd177052">1. Define function to print Hello World to stdout then call it</a></li>
+<li><a href="#org3efd73b">2. Define or alias to function to add two numbers then call on 1, 2 storing in x</a></li>
+<li><a href="#org237b3a6">3. Define a function to read a file fn and store contents in x</a></li>
+<li><a href="#orgc8d6d9b">4. Sum of all numbers from 0 to 9</a></li>
+<li><a href="#org81414e6">5. End</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7c24c74" class="outline-2">
-<h2 id="org7c24c74"><span class="section-number-2">1</span> Hello World</h2>
+<div id="outline-container-orgd177052" class="outline-2">
+<h2 id="orgd177052"><span class="section-number-2">1</span> Define function to print Hello World to stdout then call it</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>prn <span style="color: #0a3;">"Hello World"</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+<pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">defn</span> <span style="color: #fe0; font-weight: bold;">hello-world</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">[]</span>
+  <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>prn <span style="color: #0a3;">"Hello World"</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+
+<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>hello-world<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-janet"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>pp <span style="color: #0a3;">"Hello World"</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+<pre class="src src-janet"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">defn</span> <span style="color: #fe0; font-weight: bold;">hello-world</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">[]</span>
+  <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>pp <span style="color: #0a3;">"Hello World"</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+
+<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>hello-world<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
 <pre class="src src-c"><span style="color: #a6f000;">#include</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">&lt;</span><span style="color: #0a3;">stdio.h</span><span style="color: #cf0; font-weight: bold; font-style: italic;">&gt;</span>
 
-printf <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">"Hello World"</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>;
+<span style="color: #f06; font-weight: bold;">void</span> <span style="color: #fe0; font-weight: bold;">hello_world</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">()</span>
+<span style="color: #cf0; font-weight: bold; font-style: italic;">{</span>
+  printf <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">"Hello World"</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>;
+<span style="color: #cf0; font-weight: bold; font-style: italic;">}</span>
+
+<span style="color: #fe0; font-weight: bold;">hello_world</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">()</span>;
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-js">console.log<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">"Hello World"</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+<pre class="src src-js"><span style="color: #06c; font-weight: bold;">function</span> <span style="color: #fe0; font-weight: bold;">helloWorld</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">()</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">{</span>
+  console.log<span style="color: #0cf; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">"Hello World"</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>
+<span style="color: #cf0; font-weight: bold; font-style: italic;">}</span>
+
+helloWorld <span style="color: #cf0; font-weight: bold; font-style: italic;">()</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-lisp"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>prin1 <span style="color: #0a3;">"Hello World"</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+<pre class="src src-lisp"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">defun</span> <span style="color: #fe0; font-weight: bold;">hello-world</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">()</span>
+  <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>prin1 <span style="color: #0a3;">"Hello World"</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+
+<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>hello-world<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-erlang"><span style="color: #f06; font-weight: bold;">io</span>:<span style="color: #f06; font-weight: bold;">format</span><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">"Hello World"</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>.
+<pre class="src src-erlang"><span style="color: #a6f000;">-module</span><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>hw<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>.
+
+<span style="color: #fe0; font-weight: bold;">hello_world</span><span style="color: #cf0; font-weight: bold; font-style: italic;">()</span> -&gt;
+  <span style="color: #f06; font-weight: bold;">io</span>:<span style="color: #f06; font-weight: bold;">format</span><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">"Hello World"</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>.
+
+<span style="color: #f06; font-weight: bold;">hw</span>:<span style="color: #f06; font-weight: bold;">hello_world</span><span style="color: #cf0; font-weight: bold; font-style: italic;">()</span>.
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3b73fc8" class="outline-2">
-<h2 id="org3b73fc8"><span class="section-number-2">2</span> Function to add two numbers</h2>
+<div id="outline-container-org3efd73b" class="outline-2">
+<h2 id="org3efd73b"><span class="section-number-2">2</span> Define or alias to function to add two numbers then call on 1, 2 storing in x</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">defn</span> <span style="color: #fe0; font-weight: bold;">sum</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">[</span>a b<span style="color: #0cf; font-weight: bold; font-style: italic;">]</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>+ a b<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+<pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">def</span> <span style="color: #3af;">sum</span> +<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+
+<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">def</span> <span style="color: #3af;">x</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>sum 1 2<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-janet"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">defn</span> <span style="color: #fe0; font-weight: bold;">sum</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">[</span>a b<span style="color: #0cf; font-weight: bold; font-style: italic;">]</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>+ a b<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+<pre class="src src-janet"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">def</span> <span style="color: #3af;">sum</span> +<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+
+<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">def</span> <span style="color: #3af;">x</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>sum 1 2<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
 <pre class="src src-c"><span style="color: #f06; font-weight: bold;">int</span> <span style="color: #fe0; font-weight: bold;">sum</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #f06; font-weight: bold;">int</span> <span style="color: #3af;">a</span>, <span style="color: #f06; font-weight: bold;">int</span> <span style="color: #3af;">b</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">{</span> <span style="color: #06c; font-weight: bold;">return</span> a + b; <span style="color: #cf0; font-weight: bold; font-style: italic;">}</span>
+
+<span style="color: #f06; font-weight: bold;">int</span> <span style="color: #3af;">x</span> = sum <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>1, 2<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>;
 </pre>
 </div>
 
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #06c; font-weight: bold;">function</span> <span style="color: #fe0; font-weight: bold;">sum</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #3af;">a</span>, <span style="color: #3af;">b</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">{</span> <span style="color: #06c; font-weight: bold;">return</span> a + b; <span style="color: #cf0; font-weight: bold; font-style: italic;">}</span>
+
+<span style="color: #06c; font-weight: bold;">const</span> <span style="color: #3af;">x</span> = sum <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>1, 2<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
 <pre class="src src-lisp"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">defun</span> <span style="color: #fe0; font-weight: bold;">sum</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>a b<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>+ a b<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+
+<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">defvar</span> <span style="color: #3af;">x</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>sum 1 2<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-erlang"><span style="color: #fe0; font-weight: bold;">sum</span><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #3af;">A</span>,<span style="color: #3af;">B</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span> -&gt;<span style="color: #fe0; font-weight: bold;"> </span><span style="color: #3af;">A</span> + <span style="color: #3af;">B</span>.
+<pre class="src src-erlang"><span style="color: #a6f000;">-module</span><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>y<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>.
+<span style="color: #fe0; font-weight: bold;">sum</span><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #3af;">A</span>,<span style="color: #3af;">B</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span> -&gt;<span style="color: #fe0; font-weight: bold;"> </span><span style="color: #3af;">A</span> + <span style="color: #3af;">B</span>.
+
+<span style="color: #3af;">X</span> = <span style="color: #f06; font-weight: bold;">y</span>:<span style="color: #f06; font-weight: bold;">sum</span><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>1, 2<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>.
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org8bee5ce" class="outline-2">
-<h2 id="org8bee5ce"><span class="section-number-2">3</span> Reading a file</h2>
+<div id="outline-container-org237b3a6" class="outline-2">
+<h2 id="org237b3a6"><span class="section-number-2">3</span> Define a function to read a file fn and store contents in x</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>slurp <span style="color: #0a3;">"/tmp/test.txt"</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+<pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">def</span> <span style="color: #3af;">my-slurp</span> slurp<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+
+<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">def</span> <span style="color: #3af;">x</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>my-slurp <span style="color: #0a3;">"test.txt"</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-janet"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>slurp <span style="color: #0a3;">"/tmp/test.txt"</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+<pre class="src src-janet"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">def</span> <span style="color: #3af;">my-slurp</span> slurp<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+
+<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">def</span> <span style="color: #3af;">x</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>my-slurp <span style="color: #0a3;">"test.txt"</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-c"><span style="color: #f06; font-weight: bold;">FILE</span> *<span style="color: #3af;">fp</span>;
-<span style="color: #f06; font-weight: bold;">char</span> *<span style="color: #3af;">c</span>;
-fp = fopen <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">"/tmp/test.txt"</span>, <span style="color: #0a3;">"r"</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>;
-<span style="color: #06c; font-weight: bold;">do</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">{</span> c = fgets <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>line, 255, fp<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>; <span style="color: #cf0; font-weight: bold; font-style: italic;">}</span> <span style="color: #06c; font-weight: bold;">while</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>c != <span style="color: #ff0;">NULL</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>;
-<span style="color: #fe0; font-weight: bold;">fclose</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>fp<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>;
+<pre class="src src-c"><span style="color: #f06; font-weight: bold;">char</span> * <span style="color: #fe0; font-weight: bold;">slurp</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #f06; font-weight: bold;">char</span> *<span style="color: #3af;">fn</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+<span style="color: #cf0; font-weight: bold; font-style: italic;">{</span>
+  <span style="color: #f06; font-weight: bold;">FILE</span> *<span style="color: #3af;">fp</span>;
+  <span style="color: #f06; font-weight: bold;">char</span> *<span style="color: #3af;">c</span>;
+
+  fp = fopen <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>fn, <span style="color: #0a3;">"r"</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>;
+  <span style="color: #06c; font-weight: bold;">do</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">{</span> c = fgets <span style="color: #ff0; font-weight: bold; font-style: italic;">(</span>line, 255, fp<span style="color: #ff0; font-weight: bold; font-style: italic;">)</span>; <span style="color: #0cf; font-weight: bold; font-style: italic;">}</span> <span style="color: #06c; font-weight: bold;">while</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>c != <span style="color: #ff0;">NULL</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>;
+  fclose <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>fp<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>;
+
+  <span style="color: #06c; font-weight: bold;">return</span> c;
+<span style="color: #cf0; font-weight: bold; font-style: italic;">}</span>
+
+<span style="color: #f06; font-weight: bold;">char</span> *<span style="color: #3af;">x</span> = slurp <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">"test.txt"</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>;
 </pre>
 </div>
 
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #06c; font-weight: bold;">const</span> <span style="color: #3af;">fs</span> = require<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">'fs'</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
-fs.readFileSync<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">'/tmp/test.txt'</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+
+<span style="color: #06c; font-weight: bold;">function</span> <span style="color: #fe0; font-weight: bold;">slurp</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #3af;">fn</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">{</span>
+  <span style="color: #06c; font-weight: bold;">return</span> fs.readFileSync<span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>fn<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>
+<span style="color: #cf0; font-weight: bold; font-style: italic;">}</span>
+
+<span style="color: #06c; font-weight: bold;">var</span> <span style="color: #3af;">x</span> = slurp<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">'test.txt'</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-php">file_get_contents<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">'/tmp/test.txt'</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>;
+<pre class="src src-php"><span style="color: #06c; font-weight: bold;">function</span> <span style="color: #fe0; font-weight: bold;">slurp</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #fa0;">$</span><span style="color: #fff;">fn</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">{</span>
+  <span style="color: #06c; font-weight: bold;">return</span> file_get_contents<span style="color: #0cf; font-weight: bold; font-style: italic;">(</span><span style="color: #fa0;">$</span><span style="color: #fff;">fn</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>;
+<span style="color: #cf0; font-weight: bold; font-style: italic;">}</span>
+
+<span style="color: #fa0;">$</span><span style="color: #fff;">x</span> = slurp <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">'test.txt'</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-lisp"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">defun</span> <span style="color: #fe0; font-weight: bold;">slurp</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>filename<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>
+  <span style="color: #e9b96e;">"Read in FILENAME and return as a single string."</span>
+  <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">let</span> <span style="color: #ff0; font-weight: bold; font-style: italic;">(</span><span style="color: #0ff; font-weight: bold; font-style: italic;">(</span>lines
+         <span style="color: #ff7; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">with-open-file</span>
+             <span style="color: #f90; font-weight: bold; font-style: italic;">(</span>stream filename
+                     <span style="color: #a6f000;">:direction</span> <span style="color: #a6f000;">:input</span>
+                     <span style="color: #a6f000;">:if-does-not-exist</span> <span style="color: #a6f000;">:error</span><span style="color: #f90; font-weight: bold; font-style: italic;">)</span>
+           <span style="color: #f90; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">when</span> stream
+             <span style="color: #f0a; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">loop</span> for line = <span style="color: #a0f; font-weight: bold; font-style: italic;">(</span>read-line stream nil 'eof<span style="color: #a0f; font-weight: bold; font-style: italic;">)</span>
+                until <span style="color: #a0f; font-weight: bold; font-style: italic;">(</span>eq line 'eof<span style="color: #a0f; font-weight: bold; font-style: italic;">)</span>
+                collect line<span style="color: #f0a; font-weight: bold; font-style: italic;">)</span><span style="color: #f90; font-weight: bold; font-style: italic;">)</span><span style="color: #ff7; font-weight: bold; font-style: italic;">)</span><span style="color: #0ff; font-weight: bold; font-style: italic;">)</span><span style="color: #ff0; font-weight: bold; font-style: italic;">)</span>
+    <span style="color: #ff0; font-weight: bold; font-style: italic;">(</span>format nil <span style="color: #0a3;">"~{~a~^~%~}"</span> lines<span style="color: #ff0; font-weight: bold; font-style: italic;">)</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+
+<span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">defvar</span> <span style="color: #3af;">x</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>slurp <span style="color: #0a3;">"test.txt"</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 </pre>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org0594d0e" class="outline-2">
-<h2 id="org0594d0e"><span class="section-number-2">4</span> Sum of all numbers from 0 to 9</h2>
+<div id="outline-container-orgc8d6d9b" class="outline-2">
+<h2 id="orgc8d6d9b"><span class="section-number-2">4</span> Sum of all numbers from 0 to 9</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>reduce + <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>range 10<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
@@ -391,8 +465,8 @@ fs.readFileSync<span style="color: #cf0; font-weight: bold; font-style: italic;"
 </div>
 </div>
 
-<div id="outline-container-orgdab4e9f" class="outline-2">
-<h2 id="orgdab4e9f"><span class="section-number-2">5</span> End</h2>
+<div id="outline-container-org81414e6" class="outline-2">
+<h2 id="org81414e6"><span class="section-number-2">5</span> End</h2>
 <div class="outline-text-2" id="text-5">
 <style>
 @charset "UTF-8";
@@ -572,7 +646,7 @@ window.onload = () => {
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matthew Carter</p>
-<p class="date">Created: 2020-04-09 Thu 00:50</p>
+<p class="date">Created: 2020-04-09 Thu 01:16</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

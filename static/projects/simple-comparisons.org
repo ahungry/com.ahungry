@@ -1,81 +1,154 @@
-* Hello World
+* Define function to print Hello World to stdout then call it
 #+BEGIN_SRC clojure
-(prn "Hello World")
+(defn hello-world []
+  (prn "Hello World"))
+
+(hello-world)
 #+END_SRC
 
 #+BEGIN_SRC janet
-(pp "Hello World")
+(defn hello-world []
+  (pp "Hello World"))
+
+(hello-world)
 #+END_SRC
 
 #+BEGIN_SRC c
 #include <stdio.h>
 
-printf ("Hello World");
+void hello_world ()
+{
+  printf ("Hello World");
+}
+
+hello_world ();
 #+END_SRC
 
 #+BEGIN_SRC js
-console.log("Hello World")
+function helloWorld () {
+  console.log("Hello World")
+}
+
+helloWorld ()
 #+END_SRC
 
 #+BEGIN_SRC lisp
-(prin1 "Hello World")
+(defun hello-world ()
+  (prin1 "Hello World"))
+
+(hello-world)
 #+END_SRC
 
 #+BEGIN_SRC erlang
-io:format("Hello World").
+-module(hw).
+
+hello_world() ->
+  io:format("Hello World").
+
+hw:hello_world().
 #+END_SRC
 
-* Function to add two numbers
+* Define or alias to function to add two numbers then call on 1, 2 storing in x
 #+BEGIN_SRC clojure
-(defn sum [a b] (+ a b))
+(def sum +)
+
+(def x (sum 1 2))
 #+END_SRC
 
 #+BEGIN_SRC janet
-(defn sum [a b] (+ a b))
+(def sum +)
+
+(def x (sum 1 2))
 #+END_SRC
 
 #+BEGIN_SRC c
 int sum (int a, int b) { return a + b; }
+
+int x = sum (1, 2);
 #+END_SRC
 
 #+BEGIN_SRC js
 function sum (a, b) { return a + b; }
+
+const x = sum (1, 2)
 #+END_SRC
 
 #+BEGIN_SRC lisp
 (defun sum (a b) (+ a b))
+
+(defvar x (sum 1 2))
 #+END_SRC
 
 #+BEGIN_SRC erlang
+-module(y).
 sum(A,B) -> A + B.
+
+X = y:sum(1, 2).
 #+END_SRC
 
-* Reading a file
+* Define a function to read a file fn and store contents in x
 #+BEGIN_SRC clojure
-(slurp "/tmp/test.txt")
+(def my-slurp slurp)
+
+(def x (my-slurp "test.txt"))
 #+END_SRC
 
 #+BEGIN_SRC janet
-(slurp "/tmp/test.txt")
+(def my-slurp slurp)
+
+(def x (my-slurp "test.txt"))
 #+END_SRC
 
 #+BEGIN_SRC c
-FILE *fp;
-char *c;
-fp = fopen ("/tmp/test.txt", "r");
-do { c = fgets (line, 255, fp); } while (c != NULL);
-fclose (fp);
+char * slurp (char *fn)
+{
+  FILE *fp;
+  char *c;
+
+  fp = fopen (fn, "r");
+  do { c = fgets (line, 255, fp); } while (c != NULL);
+  fclose (fp);
+
+  return c;
+}
+
+char *x = slurp ("test.txt");
 #+END_SRC
 
 #+BEGIN_SRC js
 const fs = require('fs')
-fs.readFileSync('/tmp/test.txt')
+
+function slurp (fn) {
+  return fs.readFileSync(fn)
+}
+
+var x = slurp('test.txt')
 #+END_SRC
 
 #+BEGIN_SRC php
-file_get_contents('/tmp/test.txt');
+function slurp ($fn) {
+  return file_get_contents($fn);
+}
+
+$x = slurp ('test.txt');
 #+END_SRC
 
+#+BEGIN_SRC lisp
+(defun slurp (filename)
+  "Read in FILENAME and return as a single string."
+  (let ((lines
+         (with-open-file
+             (stream filename
+                     :direction :input
+                     :if-does-not-exist :error)
+           (when stream
+             (loop for line = (read-line stream nil 'eof)
+                until (eq line 'eof)
+                collect line)))))
+    (format nil "~{~a~^~%~}" lines)))
+
+(defvar x (slurp "test.txt"))
+#+END_SRC
 * Sum of all numbers from 0 to 9
 #+BEGIN_SRC clojure
 (reduce + (range 10))
