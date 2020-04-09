@@ -354,6 +354,32 @@ function removeItalics() {
     }
   }
 }
+
+function sizeSort () {
+  const outlines = document.querySelectorAll('.outline-2')
+
+  for (let x = 0; x < outlines.length; x++) {
+    let parent = outlines[x]
+    const nodes = parent.querySelectorAll('.org-src-container')
+    let sortedNodes = []
+
+    for (let i = 0; i < nodes.length; i++) {
+      const node = nodes[i]
+      h = node.offsetHeight
+      w = node.offsetWidth
+      sortedNodes.push({ node, h, w })
+      node.remove()
+    }
+
+    sortedNodes.sort((a, b) => {
+      return (a.w * a.h) > (b.w * b.h) ? -1 : 1
+    }).forEach(node => {
+      parent.appendChild(node.node)
+      console.log('appending...')
+    })
+  }
+}
+
 function fancyPres () {
   const nodes = document.querySelectorAll('pre')
   for (let i = 0; i < nodes.length; i++) {
@@ -363,6 +389,7 @@ function fancyPres () {
 }
 window.onload = () => {
   removeItalics()
+  sizeSort()
   fancyPres()
 }
 </script>
