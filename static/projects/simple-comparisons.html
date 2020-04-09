@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-04-09 Thu 11:50 -->
+<!-- 2020-04-09 Thu 12:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>Simple Comparisons</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Matthew Carter" />
 <style type="text/css">
@@ -229,21 +229,45 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
+<h1 class="title">Simple Comparisons</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org78811e9">1. Define function to print Hello World to stdout then call it</a></li>
-<li><a href="#orge03bd47">2. Define or alias to function to add two numbers then call on 1, 2 storing in x</a></li>
-<li><a href="#org23221fd">3. Define a function to read a file fn and store contents in x</a></li>
-<li><a href="#org866551f">4. Sum of all numbers from 0 to 9</a></li>
-<li><a href="#orgf4c9b1c">5. End</a></li>
+<li><a href="#org0588d60">Intro</a></li>
+<li><a href="#org9491e65">Define function to print Hello World to stdout then call it</a></li>
+<li><a href="#org2c13195">Define or alias to function to add two numbers then call on 1, 2 storing in x</a></li>
+<li><a href="#org6bae379">Define a function to read a file fn and store contents in x</a></li>
+<li><a href="#org8cce419">Sum of all numbers from 0 to 9</a></li>
+<li><a href="#org8e2b699">End</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org78811e9" class="outline-2">
-<h2 id="org78811e9"><span class="section-number-2">1</span> Define function to print Hello World to stdout then call it</h2>
-<div class="outline-text-2" id="text-1">
+
+<div id="outline-container-org0588d60" class="outline-2">
+<h2 id="org0588d60">Intro</h2>
+<div class="outline-text-2" id="text-org0588d60">
+<p>
+I often find myself browsing <a href="http://rosettacode.org/wiki/Rosetta_Code">http://rosettacode.org/wiki/Rosetta_Code</a>
+however the results there are often quite advanced.
+</p>
+
+<p>
+As a fun experiment, I'm going to do similar here (comparing different
+language/syntax for a variety of tasks) but try to keep to
+simple/trivial tasks and avoid going into more advanced cases.
+</p>
+
+<p>
+This will therefore serve as a solid base/reference for when going
+from one language to another (and needing to perform trivial task).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9491e65" class="outline-2">
+<h2 id="org9491e65">Define function to print Hello World to stdout then call it</h2>
+<div class="outline-text-2" id="text-org9491e65">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">defn</span> <span style="color: #fe0; font-weight: bold;">hello-world</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">[]</span>
   <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>prn <span style="color: #0a3;">"Hello World"</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
@@ -301,9 +325,9 @@ helloWorld <span style="color: #cf0; font-weight: bold; font-style: italic;">()<
 </div>
 </div>
 
-<div id="outline-container-orge03bd47" class="outline-2">
-<h2 id="orge03bd47"><span class="section-number-2">2</span> Define or alias to function to add two numbers then call on 1, 2 storing in x</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org2c13195" class="outline-2">
+<h2 id="org2c13195">Define or alias to function to add two numbers then call on 1, 2 storing in x</h2>
+<div class="outline-text-2" id="text-org2c13195">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">def</span> <span style="color: #3af;">sum</span> +<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 
@@ -349,9 +373,9 @@ helloWorld <span style="color: #cf0; font-weight: bold; font-style: italic;">()<
 </div>
 </div>
 
-<div id="outline-container-org23221fd" class="outline-2">
-<h2 id="org23221fd"><span class="section-number-2">3</span> Define a function to read a file fn and store contents in x</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org6bae379" class="outline-2">
+<h2 id="org6bae379">Define a function to read a file fn and store contents in x</h2>
+<div class="outline-text-2" id="text-org6bae379">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">def</span> <span style="color: #3af;">my-slurp</span> slurp<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 
@@ -431,9 +455,9 @@ helloWorld <span style="color: #cf0; font-weight: bold; font-style: italic;">()<
 </div>
 </div>
 </div>
-<div id="outline-container-org866551f" class="outline-2">
-<h2 id="org866551f"><span class="section-number-2">4</span> Sum of all numbers from 0 to 9</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org8cce419" class="outline-2">
+<h2 id="org8cce419">Sum of all numbers from 0 to 9</h2>
+<div class="outline-text-2" id="text-org8cce419">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>reduce + <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>range 10<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 </pre>
@@ -471,12 +495,17 @@ helloWorld <span style="color: #cf0; font-weight: bold; font-style: italic;">()<
 <pre class="src src-erlang"><span style="color: #f06; font-weight: bold;">lists</span>:<span style="color: #f06; font-weight: bold;">foldl</span><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">fun</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span><span style="color: #3af;">N</span>, <span style="color: #3af;">Acc</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span> -&gt;<span style="color: #fe0; font-weight: bold;"> </span><span style="color: #3af;">N</span> + <span style="color: #3af;">Acc</span> <span style="color: #06c; font-weight: bold;">end</span>, 0, <span style="color: #f06; font-weight: bold;">lists</span>:<span style="color: #f06; font-weight: bold;">seq</span><span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>0, 9<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>.
 </pre>
 </div>
+
+<div class="org-src-container">
+<pre class="src src-j">+/ <span style="color: #a6f000;">i.</span>10
+</pre>
+</div>
 </div>
 </div>
 
-<div id="outline-container-orgf4c9b1c" class="outline-2">
-<h2 id="orgf4c9b1c"><span class="section-number-2">5</span> End</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org8e2b699" class="outline-2">
+<h2 id="org8e2b699">End</h2>
+<div class="outline-text-2" id="text-org8e2b699">
 <style>
 @charset "UTF-8";
 @font-face {
@@ -682,7 +711,7 @@ window.onload = () => {
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matthew Carter</p>
-<p class="date">Created: 2020-04-09 Thu 11:50</p>
+<p class="date">Created: 2020-04-09 Thu 12:05</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

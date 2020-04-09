@@ -1,4 +1,21 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:2 num:nil tags:t toc:t timestamps:nil
+#+TITLE: Simple Comparisons
+
+* Intro
+I often find myself browsing http://rosettacode.org/wiki/Rosetta_Code
+however the results there are often quite advanced.
+
+As a fun experiment, I'm going to do similar here (comparing different
+language/syntax for a variety of tasks) but try to keep to
+simple/trivial tasks and avoid going into more advanced cases.
+
+This will therefore serve as a solid base/reference for when going
+from one language to another (and needing to perform trivial task).
+
 * Define function to print Hello World to stdout then call it
+
 #+BEGIN_SRC clojure
 (defn hello-world []
   (prn "Hello World"))
@@ -189,6 +206,10 @@ for (i = 0; i < 10; i++) {
 
 #+BEGIN_SRC erlang
 lists:foldl(fun (N, Acc) -> N + Acc end, 0, lists:seq(0, 9)).
+#+END_SRC
+
+#+BEGIN_SRC j
++/ i.10
 #+END_SRC
 
 * End
