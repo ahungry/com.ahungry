@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-04-09 Thu 01:16 -->
+<!-- 2020-04-09 Thu 11:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -233,16 +233,16 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd177052">1. Define function to print Hello World to stdout then call it</a></li>
-<li><a href="#org3efd73b">2. Define or alias to function to add two numbers then call on 1, 2 storing in x</a></li>
-<li><a href="#org237b3a6">3. Define a function to read a file fn and store contents in x</a></li>
-<li><a href="#orgc8d6d9b">4. Sum of all numbers from 0 to 9</a></li>
-<li><a href="#org81414e6">5. End</a></li>
+<li><a href="#orgb581f51">1. Define function to print Hello World to stdout then call it</a></li>
+<li><a href="#orgf452707">2. Define or alias to function to add two numbers then call on 1, 2 storing in x</a></li>
+<li><a href="#org893fb27">3. Define a function to read a file fn and store contents in x</a></li>
+<li><a href="#orgeccd1c0">4. Sum of all numbers from 0 to 9</a></li>
+<li><a href="#org5ea3718">5. End</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd177052" class="outline-2">
-<h2 id="orgd177052"><span class="section-number-2">1</span> Define function to print Hello World to stdout then call it</h2>
+<div id="outline-container-orgb581f51" class="outline-2">
+<h2 id="orgb581f51"><span class="section-number-2">1</span> Define function to print Hello World to stdout then call it</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">defn</span> <span style="color: #fe0; font-weight: bold;">hello-world</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">[]</span>
@@ -301,8 +301,8 @@ helloWorld <span style="color: #cf0; font-weight: bold; font-style: italic;">()<
 </div>
 </div>
 
-<div id="outline-container-org3efd73b" class="outline-2">
-<h2 id="org3efd73b"><span class="section-number-2">2</span> Define or alias to function to add two numbers then call on 1, 2 storing in x</h2>
+<div id="outline-container-orgf452707" class="outline-2">
+<h2 id="orgf452707"><span class="section-number-2">2</span> Define or alias to function to add two numbers then call on 1, 2 storing in x</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">def</span> <span style="color: #3af;">sum</span> +<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
@@ -349,8 +349,8 @@ helloWorld <span style="color: #cf0; font-weight: bold; font-style: italic;">()<
 </div>
 </div>
 
-<div id="outline-container-org237b3a6" class="outline-2">
-<h2 id="org237b3a6"><span class="section-number-2">3</span> Define a function to read a file fn and store contents in x</h2>
+<div id="outline-container-org893fb27" class="outline-2">
+<h2 id="org893fb27"><span class="section-number-2">3</span> Define a function to read a file fn and store contents in x</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">def</span> <span style="color: #3af;">my-slurp</span> slurp<span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
@@ -367,16 +367,25 @@ helloWorld <span style="color: #cf0; font-weight: bold; font-style: italic;">()<
 </div>
 
 <div class="org-src-container">
-<pre class="src src-c"><span style="color: #f06; font-weight: bold;">char</span> * <span style="color: #fe0; font-weight: bold;">slurp</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #f06; font-weight: bold;">char</span> *<span style="color: #3af;">fn</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
+<pre class="src src-c"><span style="color: #f06; font-weight: bold;">char</span> *
+<span style="color: #fe0; font-weight: bold;">slurp</span> <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #f06; font-weight: bold;">char</span> *<span style="color: #3af;">fn</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
 <span style="color: #cf0; font-weight: bold; font-style: italic;">{</span>
   <span style="color: #f06; font-weight: bold;">FILE</span> *<span style="color: #3af;">fp</span>;
   <span style="color: #f06; font-weight: bold;">char</span> *<span style="color: #3af;">c</span>;
+  <span style="color: #f06; font-weight: bold;">char</span> *<span style="color: #3af;">content</span> = malloc <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span><span style="color: #06c; font-weight: bold;">sizeof</span> <span style="color: #ff0; font-weight: bold; font-style: italic;">(</span><span style="color: #f06; font-weight: bold;">char</span><span style="color: #ff0; font-weight: bold; font-style: italic;">)</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>;
+  <span style="color: #f06; font-weight: bold;">char</span> <span style="color: #3af;">line</span><span style="color: #0cf; font-weight: bold; font-style: italic;">[</span>255<span style="color: #0cf; font-weight: bold; font-style: italic;">]</span>;
 
   fp = fopen <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>fn, <span style="color: #0a3;">"r"</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>;
-  <span style="color: #06c; font-weight: bold;">do</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">{</span> c = fgets <span style="color: #ff0; font-weight: bold; font-style: italic;">(</span>line, 255, fp<span style="color: #ff0; font-weight: bold; font-style: italic;">)</span>; <span style="color: #0cf; font-weight: bold; font-style: italic;">}</span> <span style="color: #06c; font-weight: bold;">while</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>c != <span style="color: #ff0;">NULL</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>;
+
+  <span style="color: #06c; font-weight: bold;">while</span> <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span><span style="color: #ff0;">NULL</span> != <span style="color: #ff0; font-weight: bold; font-style: italic;">(</span>c = fgets <span style="color: #0ff; font-weight: bold; font-style: italic;">(</span>line, 255, fp<span style="color: #0ff; font-weight: bold; font-style: italic;">)</span><span style="color: #ff0; font-weight: bold; font-style: italic;">)</span><span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>
+    <span style="color: #0cf; font-weight: bold; font-style: italic;">{</span>
+      content = realloc <span style="color: #ff0; font-weight: bold; font-style: italic;">(</span>content, <span style="color: #06c; font-weight: bold;">sizeof</span> <span style="color: #0ff; font-weight: bold; font-style: italic;">(</span><span style="color: #f06; font-weight: bold;">char</span><span style="color: #0ff; font-weight: bold; font-style: italic;">)</span> * <span style="color: #0ff; font-weight: bold; font-style: italic;">(</span>strlen <span style="color: #ff7; font-weight: bold; font-style: italic;">(</span>c<span style="color: #ff7; font-weight: bold; font-style: italic;">)</span> + strlen <span style="color: #ff7; font-weight: bold; font-style: italic;">(</span>content<span style="color: #ff7; font-weight: bold; font-style: italic;">)</span><span style="color: #0ff; font-weight: bold; font-style: italic;">)</span><span style="color: #ff0; font-weight: bold; font-style: italic;">)</span>;
+      strcat <span style="color: #ff0; font-weight: bold; font-style: italic;">(</span>content, c<span style="color: #ff0; font-weight: bold; font-style: italic;">)</span>;
+    <span style="color: #0cf; font-weight: bold; font-style: italic;">}</span>
+
   fclose <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>fp<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span>;
 
-  <span style="color: #06c; font-weight: bold;">return</span> c;
+  <span style="color: #06c; font-weight: bold;">return</span> content;
 <span style="color: #cf0; font-weight: bold; font-style: italic;">}</span>
 
 <span style="color: #f06; font-weight: bold;">char</span> *<span style="color: #3af;">x</span> = slurp <span style="color: #cf0; font-weight: bold; font-style: italic;">(</span><span style="color: #0a3;">"test.txt"</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>;
@@ -422,8 +431,8 @@ helloWorld <span style="color: #cf0; font-weight: bold; font-style: italic;">()<
 </div>
 </div>
 </div>
-<div id="outline-container-orgc8d6d9b" class="outline-2">
-<h2 id="orgc8d6d9b"><span class="section-number-2">4</span> Sum of all numbers from 0 to 9</h2>
+<div id="outline-container-orgeccd1c0" class="outline-2">
+<h2 id="orgeccd1c0"><span class="section-number-2">4</span> Sum of all numbers from 0 to 9</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="color: #cf0; font-weight: bold; font-style: italic;">(</span>reduce + <span style="color: #0cf; font-weight: bold; font-style: italic;">(</span>range 10<span style="color: #0cf; font-weight: bold; font-style: italic;">)</span><span style="color: #cf0; font-weight: bold; font-style: italic;">)</span>
@@ -465,8 +474,8 @@ helloWorld <span style="color: #cf0; font-weight: bold; font-style: italic;">()<
 </div>
 </div>
 
-<div id="outline-container-org81414e6" class="outline-2">
-<h2 id="org81414e6"><span class="section-number-2">5</span> End</h2>
+<div id="outline-container-org5ea3718" class="outline-2">
+<h2 id="org5ea3718"><span class="section-number-2">5</span> End</h2>
 <div class="outline-text-2" id="text-5">
 <style>
 @charset "UTF-8";
@@ -646,7 +655,7 @@ window.onload = () => {
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matthew Carter</p>
-<p class="date">Created: 2020-04-09 Thu 01:16</p>
+<p class="date">Created: 2020-04-09 Thu 11:26</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

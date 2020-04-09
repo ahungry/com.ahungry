@@ -100,16 +100,25 @@ X = y:sum(1, 2).
 #+END_SRC
 
 #+BEGIN_SRC c
-char * slurp (char *fn)
+char *
+slurp (char *fn)
 {
   FILE *fp;
   char *c;
+  char *content = malloc (sizeof (char));
+  char line[255];
 
   fp = fopen (fn, "r");
-  do { c = fgets (line, 255, fp); } while (c != NULL);
+
+  while (NULL != (c = fgets (line, 255, fp)))
+    {
+      content = realloc (content, sizeof (char) * (strlen (c) + strlen (content)));
+      strcat (content, c);
+    }
+
   fclose (fp);
 
-  return c;
+  return content;
 }
 
 char *x = slurp ("test.txt");
