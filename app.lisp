@@ -2,18 +2,20 @@
 
 (defpackage com.ahungry.app
   (:use :cl)
-  (:import-from :clack
-                :call)
-  (:import-from :clack.builder
+  ;; (:import-from :lack
+  ;;               :call)
+  (:import-from :lack.builder
                 :builder)
-  (:import-from :clack.middleware.static
-                :<clack-middleware-static>)
-  (:import-from :clack.middleware.session
-                :<clack-middleware-session>)
-  (:import-from :clack.middleware.accesslog
-                :<clack-middleware-accesslog>)
-  (:import-from :clack.middleware.backtrace
-                :<clack-middleware-backtrace>)
+  (:import-from :lack.middleware.static
+                :*lack-middleware-static*)
+  (:import-from :lack.middleware.session
+                :*lack-middleware-session*)
+  (:import-from :lack.session.state.cookie
+                :make-cookie-state)
+  ;; (:import-from :lack.middleware.accesslog
+  ;;               :*lack-middleware-accesslog*)
+  ;; (:import-from :lack.middleware.backtrace
+  ;;               :*lack-middleware-backtrace*)
   (:import-from :ppcre
                 :scan
                 :regex-replace)
@@ -26,29 +28,33 @@
 (in-package :com.ahungry.app)
 
 (builder
- (<clack-middleware-static>
+ (:static
   :path (lambda (path)
           (if (ppcre:scan "^(?:/assets/|/projects/|/iosevka/|/blog/|/images/|/css/|/js/|/robot\\.txt$|/favicon.ico$)" path)
               path
               nil))
   :root *static-directory*)
- (if (productionp)
-     nil
-     (make-instance '<clack-middleware-accesslog>))
- (if (getf (config) :error-log)
-     (make-instance '<clack-middleware-backtrace>
-                    :output (getf (config) :error-log))
-     nil)
+ :accesslog
+ (:backtrace :output #P"/tmp/com.ahungry.errors.log")
+ ;; (if (productionp)
+ ;;     nil
+ ;;     (make-instance '*lack-middleware-accesslog*))
+ ;; (if (getf (config) :error-log)
+ ;;     (make-instance '*lack-middleware-backtrace*
+ ;;                    :output (getf (config) :error-log))
+ ;;     nil)
 
- (<clack-middleware-session>
-  :state (make-instance
-          'clack.session.state.cookie:<clack-session-state-cookie>
-          :expires 36000)) ;; Expire cookie in 10 days
+ ;; :session
+ ;; (*lack-middleware-session*
+ ;;  :state (make-instance
+ ;;          'lack.session.state.cookie:make-cookie-state ;; *lack-session-state-cookie*
+ ;;          :expires 36000))
+ ;; Expire cookie in 10 days
 
  (if (productionp)
      nil
      (lambda (app)
        (lambda (env)
          (let ((datafly:*trace-sql* t))
-           (call app env)))))
+           (funcall app env)))))
  *web*)

@@ -9,6 +9,8 @@
   :license "AGPLv3"
   :depends-on (:clack
                :lack
+               :lack-middleware-static
+               :lack-middleware-session
                :caveman2
                :envy
                :cl-ppcre

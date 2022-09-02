@@ -27,7 +27,9 @@
               :password (or (sb-ext:posix-getenv "MYSQL_AHUNGRY_PASSWORD") "ahungry"))))
 
 (defconfig :common
-    (list :databases *env-based-database-info*))
+    (list
+     :error-log #P"error.log"
+     :databases *env-based-database-info*))
 
 (defconfig |development|
     (list :databases *env-based-database-info*

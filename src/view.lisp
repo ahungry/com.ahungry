@@ -5,8 +5,8 @@
                 :*template-directory*)
   (:import-from :caveman2
                 :*response*)
-  (:import-from :clack.response
-                :headers)
+  ;; (:import-from :clack.response
+  ;;               :headers)
   (:import-from :cl-emb
                 :*escape-type*
                 ;;:*case-sensitivity*
@@ -35,7 +35,7 @@
      :env env)))
 
 (defun render-json (object)
-  (setf (headers *response* :content-type) "application/json")
+  (setf (getf (response-headers *response*) :content-type) "application/json")
   (encode-json object))
 
 (defmacro with-layout ((&rest env-for-layout) &body body)
